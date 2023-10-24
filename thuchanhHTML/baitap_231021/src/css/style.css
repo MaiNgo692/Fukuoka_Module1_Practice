@@ -4,9 +4,15 @@ html {
     -webkit-text-size-adjust: 100%
 }
 
+*{
+    box-sizing:border-box;
+}
 body {
     margin: 0;
     font-family: 'Roboto';
+    display: flex;
+    flex-direction: column;
+
 }
 
 article, aside, footer, header, nav, section {
@@ -21,6 +27,9 @@ article, aside, footer, header, nav, section {
     max-width: 1200px;
 
 }
+.site-header .body-wrap{
+    position: relative;
+}
 
 .site-header-menu{
     display: flex;
@@ -28,10 +37,16 @@ article, aside, footer, header, nav, section {
     align-items: center;
     color: white;
     background-color: black;
+    padding: 5px;
 }
 .site-header-menu-item{
     list-style: none;
     display: flex;
+}
+#select-menu{
+    background-color: black;
+    color: white;
+    border: none;
 }
 li{
     padding: 10px 20px;
@@ -41,26 +56,49 @@ li{
 .content-center{
     text-align: center;
 }
+.content-justify{
+    text-align: justify;
+}
 
 .site-header-slider{
-    background-image: url('../images/slider1.jpg');
     height: 80vh;
-    background-size: cover;
-    background-repeat: no-repeat;
     text-align: center;
-    
+    position: relative;
+    margin: auto;
+}
+.slider-text{
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    bottom: 40px;
+}
+.mySlides{
+    position: relative;
     color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
 }
-.profiles, .blogs{
-    padding-top: 30px;
+.site-header-slider img{
+    block-size:100%;
+    height: 100%;
+    width: 100%;
+}
+.site-header-slider p{
+    display: inline-block;
+   vertical-align: bottom;
+   text-align: center;
+}
+.profiles {
+    padding-top: 200px;
+    padding-bottom: 100px;
+}
+ .blogs, .map{
+    padding-top: 100px;
+    padding-bottom: 100px;
 
-}
-.site-header-slider-title{
-    font-size: 20px;
-    padding-top: auto;
 }
 
 .band_img{
@@ -72,19 +110,26 @@ li{
 }
 .blogs-wrap-sub1{
     margin-top: 10px;
-    padding: 6px;
+    padding-top: 6px;
+    background-color: white;
+    color: black;
 }
 .blogs-wrap{
     background-color: black;
     color: white;
 }
-.blogs-wrap-sub1{
-    background-color: white;
-    color: black;
+.blogs-wrap-sub1 p{
+    padding: 10px ;
     
 }
+.month-ticket-sold-out{
+    background-color:red;
+    color: white;
+}
+
 .blogs{
     background-color: black;
+    padding-bottom: 60px;
 }
 .month-ticket{
     display: flex;
@@ -93,12 +138,12 @@ li{
 }
 .blogs-wrap-sub2{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 .blogs-wrap-sub2-items{
     background-color: white;
     color: black;
-    margin: 30px 10px;
+    margin: 30px 0px;
 }
 .blogs-wrap-sub2-items img{
     width: 100%;
@@ -112,12 +157,20 @@ li{
 }
 .blogs-wrap-sub2-items-content{
     padding: 10px;
+    margin-bottom: 10px;
+}
+.center-item{
+    margin-left: 20px;
+    margin-right: 20px;
 }
 button{
     background-color: black;
     color: white;
     padding: 10px;
     margin-top: 10px;
+}
+.month-ticket span{
+    margin-right: 20px;
 }
 .radius-circle{
     background-color:black;
@@ -131,6 +184,7 @@ button{
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-bottom: 50px;
 }
 
 .contact-wrap-sub{
@@ -141,8 +195,16 @@ button{
 .contact-wrap-sub1 li{
     padding: 3px;
 }
+.name-email{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.w-50{
+    width: 49%;
+}
 .message{
-    width: 97%;
+    width: 100%;
     margin-top: 5px;
 }
 input{
@@ -162,17 +224,27 @@ input{
     height: 60vh;
 
 }
+.blogs-wrap-sub2-items a{
+    text-decoration: none;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
 .fa-regular{
     width:20px ;
     text-align: center;
 }
-.site-footer{
-    height: 10vh;
-}
+
 .site-footer-inner{
-    height: 20px;
-    margin-top: 20px;
+    margin-top: 30px;
+    margin-bottom: 40px;
 }
 .footer-copyright{
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
 }

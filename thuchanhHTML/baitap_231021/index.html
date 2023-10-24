@@ -20,13 +20,24 @@
                     <li>BAND</li>
                     <li>TOUR</li>
                     <li>CONTACT</li>
-                    <li>MORE</li>
+                    <li>MORE
+                        <select name="" id="select-menu" value="">
+                            <option style="display:none" value=""><a href=""></a></option>
+                            <option value=""><a href=""></a></option>
+                        </select>
+                    </li>
                 </ul>
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
             <div class="site-header-slider">
-                <p class="site-header-slider-title content-center">Chicago</p>
-                <p class="site-header-slider-content content-center">Thank you, Chicago-A night we won't forget</p>
+                <div class="mySlides">
+                    <img src="./src/images/slider1.jpg" alt="Loading">
+                    <div class="slider-text">
+                        <p class=" content-center">Chicago</p>  <br>
+                        <p class=" content-center">Thank you, Chicago-A night we won't forget</p> 
+                    </div>    
+                </div>
+                
             </div>
         </header>
 
@@ -36,7 +47,7 @@
                     <div class="profiles-wrap">
                         <h2 class="content-center"> THE BAND</h2>
                         <p class="content-center"><i>We love music</i></p>
-                        <p>We have created a fictional band website. Lorem ipsum dolor sit,
+                        <p class="content-justify">We have created a fictional band website. Lorem ipsum dolor sit,
                             amet consectetur adipisicing elit. In consequuntur neque aspernatur.
                             Ratione vero ipsum, tenetur dolor fugiat aliquid, quae aperiam repudiandae reiciendis
                             rem consequuntur officia ad tempora sit blanditiis. Lorem ipsum dolor sit amet,
@@ -69,45 +80,43 @@
                         <h2 class="content-center">TOUR DATES</h2>
                         <p class="content-center"><i>Remember to book your ticket!</i></p>
                         <div class="blogs-wrap-sub1">
-                            <p class="month-ticket-sold-out">September<span
-                                    style="background-color:red;color: white;">Sold out</span></p>
+                            <p>September  &nbsp<span class="month-ticket-sold-out"> Sold out</span></p>
                             <hr>
-                            <p class="month-ticket-sold-out">October<span
-                                    style="background-color:red;color: white;">Sold out</span></p>
+                            <p>October  &nbsp <span class="month-ticket-sold-out">Sold out</span></p>
                             <hr>
                             <div class="month-ticket">
                                 <p>November</p>
-                                <input type="text" value="3" class="radius-circle">
+                                <span class="radius-circle">3</span>
                             </div>
                         </div>
                         <div class="blogs-wrap-sub2">
-                            <div class="blogs-wrap-sub2-items">
+                            <div class="blogs-wrap-sub2-items items1">
                                 <img src="https://lp-cms-production.imgix.net/2020-09/500pxRF_100424161.jpg" alt="">
                                 <div class="blogs-wrap-sub2-items-content">
                                     <h3>New York</h3>
                                     <p>Sat 28 Nov 2016</p><br><br>
-                                    <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo</p><br>
-                                    <button>Buy Tickets</button>
+                                    <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo</p><br><br>
+                                    <a href="">Buy Tickets</a>
                                 </div>
                             </div>
-                            <div class="blogs-wrap-sub2-items">
+                            <div class="blogs-wrap-sub2-items center-item">
                                 <img src="https://res.klook.com/image/upload/Mobile/City/swox6wjsl5ndvkv5jvum.jpg"
                                     alt="">
                                 <div class="blogs-wrap-sub2-items-content">
                                     <h3>Paris</h3>
                                     <p>Sat 28 Nov 2016</p><br><br>
-                                    <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo</p><br>
-                                    <button>Buy Tickets</button>
+                                    <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo</p><br><br>
+                                    <a href="">Buy Tickets</a>
                                 </div>
                             </div>
-                            <div class="blogs-wrap-sub2-items">
+                            <div class="blogs-wrap-sub2-items ">
                                 <img src="https://travel.usnews.com/dims4/USNEWS/df9b4eb/2147483647/resize/600x400%5E%3E/crop/600x400/quality/85/?url=https%3A%2F%2Ftravel.usnews.com%2Fimages%2Fgettyimages-123318669_UboMiEL.jpg"
                                     alt="">
                                 <div class="blogs-wrap-sub2-items-content">
                                     <h3>San Francisco</h3>
                                     <p>Sat 28 Nov 2016</p><br><br>
-                                    <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo</p><br>
-                                    <button>Buy Tickets</button>
+                                    <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo</p><br><br>
+                                    <a href="">Buy Tickets</a>
                                 </div>
 
                             </div>
@@ -133,18 +142,19 @@
                             <div class="contact-wrap-sub1">
                                 <form action="">
                                     <div class="name-email">
-                                        <input type="text" placeholder="Name">
-                                        <input type="text" placeholder="Email">
+                                        <input type="text" placeholder="Name" class="w-50">
+                                        <input type="text" placeholder="Email" class="w-50">
                                     </div>
                                     <div>
                                         <input type="text" placeholder="Message" class="message">
                                     </div>
+                                    <div class="btn-send">
+                                        <button>SEND</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
-                        <div class="btn-send">
-                            <button>SEND</button>
-                        </div>
+
                     </div>
                 </div>
             </section>
@@ -156,18 +166,18 @@
 
         <footer class="site-footer">
             <div class="container">
-                <div class="site-footer-inner">
+                <div class="site-footer-inner content-center">
                     <div class="footer-copyright">
                         <div>
                             <i class="fa-brands fa-square-facebook"></i>
-                        <i class="fa-brands fa-instagram"></i>
-                        <i class="fa-brands fa-square-snapchat"></i>
-                        <i class="fa-brands fa-pinterest-p"></i>
-                        <i class="fa-brands fa-twitter"></i>
+                            <i class="fa-brands fa-instagram"></i>
+                            <i class="fa-brands fa-square-snapchat"></i>
+                            <i class="fa-brands fa-pinterest-p"></i>
+                            <i class="fa-brands fa-twitter"></i>
                         </div>
                         <p>Powered by <a href="">w3.CSS</a></p>
                     </div>
-                    
+
                 </div>
             </div>
         </footer>
