@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        hr { 
+    display: inline-block;
+    margin-top: 0.5em;
+    margin-bottom: 0em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+    height: 25px;
+    background-color: blue;
+    width: 300px;
+}
+
+.view-country{
+    width: 100px;
+    display: inline-block;
+
+}
+.container{
+    text-align: center;
+}
+button{
+    background-color: yellow;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.item{
+    height: 30px;
+}
+#view{
+    display: inline-block;
+    text-align: left;
+    margin: 20px auto;
+}
+    </style>
+
+</head>
+<body>
+    <table id="population">
+        <tr>
+            <th>STT</th>
+            <th>Country</th>
+            <th>Population</th>
+        </tr>
+        <tr>
+            <td class="population-stt">1</td>
+            <td class="population-country">China</td>
+            <td class="population">1444216107</td>
+        </tr>
+        <tr>
+            <td class="population-stt">2</td>
+            <td class="population-country">India</td>
+            <td class="population">1393409038</td>
+        </tr>
+        <tr>
+            <td class="population-stt">3</td>
+            <td class="population-country">United States</td>
+            <td class="population">332915073</td>
+        </tr>
+        <tr>
+            <td class="population-stt">4</td>
+            <td class="population-country">Indonesia</td>
+            <td class="population">276361783</td>
+        </tr>
+        <tr>
+            <td class="population-stt">5</td>
+            <td class="population-country">Pakistan</td>
+            <td class="population">225199937</td>
+        </tr>
+        <tr>
+            <td class="population-stt">6</td>
+            <td class="population-country">Brazil</td>
+            <td class="population">213993437</td>
+        </tr>
+        <tr>
+            <td class="population-stt">7</td>
+            <td class="population-country">Nigeria</td>
+            <td class="population">211400708</td>
+        </tr>
+        <tr>
+            <td class="population-stt">8</td>
+            <td class="population-country">Bangladesh</td>
+            <td class="population">166303498</td>
+        </tr>
+        <tr>
+            <td class="population-stt">9</td>
+            <td class="population-country">Russia</td>
+            <td class="population">145912025</td>
+        </tr>
+        <tr>
+            <td class="population-stt">10</td>
+            <td class="population-country">Mexico</td>
+            <td class="population">130262216</td>
+        </tr>
+    </table>
+   
+    <table id="langues">
+        <tr>
+            <th>STT</th>
+            <th>Language</th>
+            <th>Speakers</th>
+        </tr>
+        <tr>
+            <td class="langues-stt">1</td>
+            <td class="langues-country">English</td>
+            <td  class="langues">91</td>
+        </tr>
+        <tr>
+            <td class="langues-stt">2</td>
+            <td class="langues-country">French</td>
+            <td  class="langues">45</td>
+        </tr>
+        <tr>
+            <td class="langues-stt">3</td>
+            <td class="langues-country">Arabic</td>
+            <td  class="langues">25</td>
+        </tr>
+        <tr>
+            <td class="langues-stt">4</td>
+            <td class="langues-country">Spanish</td>
+            <td  class="langues">24</td>
+        </tr>
+        <tr>
+            <td class="langues-stt">5</td>
+            <td class="langues-country">Portuguese</td>
+            <td  class="langues">9</td>
+        </tr>
+        <tr>
+            <td class="langues-stt">6</td>
+            <td class="langues-country">Russian</td>
+            <td  class="langues">9</td>
+        </tr>
+        <tr>
+            <td class="langues-stt">7</td>
+            <td class="langues-country">Dutch</td>
+            <td  class="langues">8</td>
+        </tr>
+        <tr>
+            <td class="langues-stt">8</td>
+            <td class="langues-country">German</td>
+            <td  class="langues">7</td>
+        </tr>
+        <tr>
+            <td class="langues-stt">9</td>
+            <td class="langues-country">Chinese</td>
+            <td class="langues">5</td>
+        </tr>
+        <tr>
+            <td class="langues-stt">10</td>
+            <td class="langues-country">Serbian</td>
+            <td  class="langues">4</td>
+        </tr>
+    </table>
+
+    <div class="container">
+        <h2>Word Countries Data</h2>
+        <button onclick="showPopulation()">Population</button>
+        <button onclick="showLangue()">Language</button>
+        <p id="title"></p>
+        <div id="view">
+        </div>
+    </div>
+    
+
+    <script>
+        let maxPopulation= document.getElementsByClassName("population")[0].textContent;
+        console.log(maxPopulation);
+        let populationStt = document.getElementsByClassName("population-stt");
+        let populationCountry = document.getElementsByClassName("population-country");
+        let populations = document.getElementsByClassName("population");
+
+        let maxLangues= document.getElementsByClassName("langues")[0].textContent;
+        console.log(maxLangues);
+        let languesStt = document.getElementsByClassName("langues-stt");
+        let languesCountry = document.getElementsByClassName("langues-country");
+        let langues = document.getElementsByClassName("langues");
+
+        function showPopulation() {
+            document.getElementById("title").innerHTML="Top 10 quốc gia có dân số đông nhất thế giới";
+            let text =`<div class="item"><p class="view-country">${populationCountry[0].textContent}</p><hr style="width: 300px;">
+                <span>${populations[0].textContent}</span> </div>`;
+            for (let i = 1; i < populationStt.length; i++) {
+                text += 
+                `
+                <div class="item"><p class="view-country">${populationCountry[i].textContent}</p><hr style="width: ${populations[i].textContent/maxPopulation*300}px;">
+                <span>${populations[i].textContent}</span></div>
+                `
+            }
+            document.getElementById("view").innerHTML=text;
+        }
+        function showLangue() {
+            document.getElementById("title").innerHTML="Top 10 ngôn ngữ phổ biến nhất thế giới";
+            let text =`<div class="item"><p class="view-country">${languesCountry[0].textContent}</p><hr style="width: 300px;">
+                <span>${langues[0].textContent}</span> </div>`;
+            for (let i = 1; i < languesStt.length; i++) {
+                text += 
+                `
+                <div class="item"><p class="view-country">${languesCountry[i].textContent}</p><hr style="width: ${langues[i].textContent/maxLangues*300}px;">
+                <span>${langues[i].textContent}</span></div>
+                `
+            }
+            document.getElementById("view").innerHTML=text;
+        }
+        
+    </script>
+</body>
+</html>
