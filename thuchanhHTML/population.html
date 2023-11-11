@@ -1,47 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        hr { 
-    display: inline-block;
-    margin-top: 0.5em;
-    margin-bottom: 0em;
-    margin-left: auto;
-    margin-right: auto;
-    border-style: inset;
-    border-width: 1px;
-    height: 25px;
-    background-color: blue;
-    width: 300px;
-}
+        hr {
+            display: inline-block;
+            margin-top: 0.5em;
+            margin-bottom: 0em;
+            margin-left: auto;
+            margin-right: auto;
+            border-style: inset;
+            border-width: 1px;
+            height: 25px;
+            background-color: blue;
+            width: 300px;
+        }
 
-.view-country{
-    width: 100px;
-    display: inline-block;
+        .view-country {
+            width: 100px;
+            display: inline-block;
 
-}
-.container{
-    text-align: center;
-}
-button{
-    background-color: yellow;
-    padding: 5px 10px;
-    border-radius: 5px;
-}
-.item{
-    height: 30px;
-}
-#view{
-    display: inline-block;
-    text-align: left;
-    margin: 20px auto;
-}
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        button {
+            background-color: yellow;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .item {
+            height: 30px;
+        }
+
+        #view {
+            display: inline-block;
+            text-align: left;
+            margin: 20px auto;
+        }
     </style>
 
 </head>
+
 <body>
     <table id="population">
         <tr>
@@ -51,8 +57,8 @@ button{
         </tr>
         <tr>
             <td class="population-stt">1</td>
-            <td class="population-country">China</td>
-            <td class="population">1444216107</td>
+            <td class="population-country">Indonesia</td>
+            <td class="population">276361783</td>
         </tr>
         <tr>
             <td class="population-stt">2</td>
@@ -66,8 +72,9 @@ button{
         </tr>
         <tr>
             <td class="population-stt">4</td>
-            <td class="population-country">Indonesia</td>
-            <td class="population">276361783</td>
+            <td class="population-country">China</td>
+            <td class="population">1444216107</td>
+
         </tr>
         <tr>
             <td class="population-stt">5</td>
@@ -76,8 +83,9 @@ button{
         </tr>
         <tr>
             <td class="population-stt">6</td>
-            <td class="population-country">Brazil</td>
-            <td class="population">213993437</td>
+            <td class="population-country">Mexico</td>
+            <td class="population">130262216</td>
+
         </tr>
         <tr>
             <td class="population-stt">7</td>
@@ -96,11 +104,11 @@ button{
         </tr>
         <tr>
             <td class="population-stt">10</td>
-            <td class="population-country">Mexico</td>
-            <td class="population">130262216</td>
+            <td class="population-country">Brazil</td>
+            <td class="population">213993437</td>
         </tr>
     </table>
-   
+
     <table id="langues">
         <tr>
             <th>STT</th>
@@ -109,43 +117,45 @@ button{
         </tr>
         <tr>
             <td class="langues-stt">1</td>
-            <td class="langues-country">English</td>
-            <td  class="langues">91</td>
+            <td class="langues-country">Portuguese</td>
+            <td class="langues">9</td>
         </tr>
         <tr>
             <td class="langues-stt">2</td>
             <td class="langues-country">French</td>
-            <td  class="langues">45</td>
+            <td class="langues">45</td>
         </tr>
         <tr>
             <td class="langues-stt">3</td>
-            <td class="langues-country">Arabic</td>
-            <td  class="langues">25</td>
+            <td class="langues-country">English</td>
+            <td class="langues">91</td>
+            
+            
         </tr>
         <tr>
             <td class="langues-stt">4</td>
             <td class="langues-country">Spanish</td>
-            <td  class="langues">24</td>
+            <td class="langues">24</td>
         </tr>
         <tr>
             <td class="langues-stt">5</td>
-            <td class="langues-country">Portuguese</td>
-            <td  class="langues">9</td>
+            <td class="langues-country">Arabic</td>
+            <td class="langues">25</td>
         </tr>
         <tr>
             <td class="langues-stt">6</td>
             <td class="langues-country">Russian</td>
-            <td  class="langues">9</td>
+            <td class="langues">9</td>
         </tr>
         <tr>
             <td class="langues-stt">7</td>
             <td class="langues-country">Dutch</td>
-            <td  class="langues">8</td>
+            <td class="langues">8</td>
         </tr>
         <tr>
             <td class="langues-stt">8</td>
             <td class="langues-country">German</td>
-            <td  class="langues">7</td>
+            <td class="langues">7</td>
         </tr>
         <tr>
             <td class="langues-stt">9</td>
@@ -155,7 +165,7 @@ button{
         <tr>
             <td class="langues-stt">10</td>
             <td class="langues-country">Serbian</td>
-            <td  class="langues">4</td>
+            <td class="langues">4</td>
         </tr>
     </table>
 
@@ -167,48 +177,102 @@ button{
         <div id="view">
         </div>
     </div>
-    
+
 
     <script>
-        let maxPopulation= document.getElementsByClassName("population")[0].textContent;
-        console.log(maxPopulation);
         let populationStt = document.getElementsByClassName("population-stt");
         let populationCountry = document.getElementsByClassName("population-country");
         let populations = document.getElementsByClassName("population");
+        let populationsList=[];
+        for (let i = 0; i < populationStt.length; i++) {
+            obj={
+                id:populationStt[i].textContent,
+                name:populationCountry[i].textContent,
+                value:populations[i].textContent,
+            }
+            populationsList.push(obj);
+        }
+        populationsList.sort((a,b)=>{
+            return b.value-a.value;
+        });
+        console.log(populationsList);
 
-        let maxLangues= document.getElementsByClassName("langues")[0].textContent;
-        console.log(maxLangues);
         let languesStt = document.getElementsByClassName("langues-stt");
         let languesCountry = document.getElementsByClassName("langues-country");
         let langues = document.getElementsByClassName("langues");
-
-        function showPopulation() {
-            document.getElementById("title").innerHTML="Top 10 quốc gia có dân số đông nhất thế giới";
-            let text =`<div class="item"><p class="view-country">${populationCountry[0].textContent}</p><hr style="width: 300px;">
-                <span>${populations[0].textContent}</span> </div>`;
-            for (let i = 1; i < populationStt.length; i++) {
-                text += 
-                `
-                <div class="item"><p class="view-country">${populationCountry[i].textContent}</p><hr style="width: ${populations[i].textContent/maxPopulation*300}px;">
-                <span>${populations[i].textContent}</span></div>
-                `
+        let languesList =[];
+        for (let i = 0; i < languesStt.length; i++) {
+            obj={
+                id:languesStt[i].textContent,
+                name:languesCountry[i].textContent,
+                value:langues[i].textContent,
             }
-            document.getElementById("view").innerHTML=text;
+            languesList.push(obj);
+        }
+        languesList.sort((a,b)=>{
+            return b.value-a.value;
+        });
+
+        // // let maxPopulation= document.getElementsByClassName("population")[0].textContent;
+        // // console.log(maxPopulation);
+        // let populationStt = document.getElementsByClassName("population-stt");
+        // console.log(populationStt);
+        // let populationCountry = document.getElementsByClassName("population-country");
+        // console.log(populationCountry);
+        // let populations = document.getElementsByClassName("population");
+        // console.log(populations);
+
+        // // let maxLangues= document.getElementsByClassName("langues")[0].textContent;
+        // // console.log(maxLangues);
+        // let languesStt = document.getElementsByClassName("langues-stt");
+        // let languesCountry = document.getElementsByClassName("langues-country");
+        // let langues = document.getElementsByClassName("langues");
+        // var maxPopulation = getMax(populations);
+        // console.log(maxPopulation);
+
+        // let maxLangues = getMax(langues);
+        // // getMax(langues, idMaxLangues, idMaxLangues);
+        // // console.log("maxLangues: " + maxLangues);
+        // // console.log("idMaxLangues: " + idMaxLangues);
+        // function getMax(arr) {
+        //     let max = 0;
+        //     let maxId = 0;
+        //     for (let i = 0; i < arr.length; i++) {
+        //         if (parseInt(arr[i].textContent) > max) {
+        //             max = parseInt(arr[i].textContent);
+        //             maxId = i;
+        //         }
+        //     } 
+        //     return { value: max, id: maxId };
+        // }
+        function showPopulation() {
+            document.getElementById("title").innerHTML = "Top 10 quốc gia có dân số đông nhất thế giới";
+            let text = "";
+            for (let i = 0; i < populationsList.length; i++) {
+                    text +=
+                        `
+                <div class="item"><p class="view-country">${populationsList[i].name}</p><hr style="width: ${populationsList[i].value / populationsList[0].value * 300}px;">
+                <span>${populationsList[i].value}</span></div>
+                `
+                }
+            
+            document.getElementById("view").innerHTML = text;
         }
         function showLangue() {
-            document.getElementById("title").innerHTML="Top 10 ngôn ngữ phổ biến nhất thế giới";
-            let text =`<div class="item"><p class="view-country">${languesCountry[0].textContent}</p><hr style="width: 300px;">
-                <span>${langues[0].textContent}</span> </div>`;
-            for (let i = 1; i < languesStt.length; i++) {
-                text += 
-                `
-                <div class="item"><p class="view-country">${languesCountry[i].textContent}</p><hr style="width: ${langues[i].textContent/maxLangues*300}px;">
-                <span>${langues[i].textContent}</span></div>
-                `
+            document.getElementById("title").innerHTML = "Top 10 ngôn ngữ phổ biến nhất thế giới";
+            let text = "";
+            for (let i = 0; i < languesList.length; i++) {
+                    text +=
+                        `
+                        <div class="item"><p class="view-country">${languesList[i].name}</p><hr style="width: ${languesList[i].value / languesList[0].value * 300}px;">
+                        <span>${languesList[i].value}</span></div>
+                        `
             }
-            document.getElementById("view").innerHTML=text;
+            document.getElementById("view").innerHTML = text;
+
         }
-        
+
     </script>
 </body>
+
 </html>
