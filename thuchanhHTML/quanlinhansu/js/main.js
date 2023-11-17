@@ -10,14 +10,20 @@ console.log("japanlevel", japanlevel.value);
 let marks = document.getElementById("marks");
 let btnSubmit = document.getElementById("submit");
 let checkForm = true;
+function uuId() {
+    return Math.floor(Math.random()*11234455667);
+}
 function checkSex() {
     if (document.getElementById('male').checked) {
         sex = "male";
+        document.getElementById(`alert-sex`).classList.add("none-display");
     } else if (document.getElementById('female').checked) {
         sex = "female";
+        document.getElementById(`alert-sex`).classList.add("none-display");
     } else {
         checkForm = false;
         document.getElementById(`alert-sex`).innerHTML = "「性別」を選んで。";
+        document.getElementById(`alert-sex`).classList.remove("none-display")
     }
 }
 function validateInput() {
@@ -37,6 +43,7 @@ function validateInput() {
 function addNewUser() {
     let userList = JSON.parse(localStorage.getItem("userList")) || [];
     user = {
+        id:uuId(),
         fullname: fullname.value,
         sex: sex,
         group: group.value,
@@ -47,13 +54,19 @@ function addNewUser() {
     }
     userList.push(user);
     localStorage.setItem("userList", JSON.stringify(userList));
+    // showUserList();
+    document.getElementById("fullname").value="";
+    document.getElementById("group").value="";
+    document.getElementById("mail").value="";
+    document.getElementById("telnumber").value="";
+    document.getElementById("marks").value="";
 }
 function checkEmail(mail) {
     if (mail.value != "") {
         if (!mail.value.match(/[^\s@]+@[^\s@]+\.[^\s@]+/)) {
             checkForm = false;
             document.getElementById(`alert-${mail.id}`).innerHTML = "「メール」を正しいに入力して。";
-            document.getElementById(`alert-${mail.id}`).classList.toggle("none-display");
+            document.getElementById(`alert-${mail.id}`).classList.remove("none-display");
         } else {
             document.getElementById(`alert-${mail.id}`).classList.add("none-display");
         }
@@ -64,7 +77,7 @@ function checkMarks(mark) {
         if (0 > mark.value || mark.value > 180) {
             checkForm = false;
             document.getElementById(`alert-${mark.id}`).innerHTML = "0 ～ 180 の「点数」を入力して。";
-            document.getElementById(`alert-${mark.id}`).classList.toggle("none-display");
+            document.getElementById(`alert-${mark.id}`).classList.remove("none-display");
         } else {
             document.getElementById(`alert-${mark.id}`).classList.add("none-display");
         }
@@ -75,7 +88,7 @@ function checkTel(tel) {
         if (!tel.value.match(/^\d{2}(?:-\d{4}-\d{4}|\d{8}|\d-\d{3,4}-\d{4})$/)) {
             checkForm = false;
             document.getElementById(`alert-${telnumber.id}`).innerHTML = "「電話番号」を正しいに入力して";
-            document.getElementById(`alert-${telnumber.id}`).classList.toggle("none-display");
+            document.getElementById(`alert-${telnumber.id}`).classList.remove("none-display");
         } else {
             document.getElementById(`alert-${telnumber.id}`).classList.add("none-display");
         }
@@ -90,7 +103,14 @@ function validateRequired(elementName) {
             if (lables[i].htmlFor == elId) {
                 checkForm = false;
                 document.getElementById(`alert-${elId}`).innerHTML = `「${lables[i].textContent}」を入力して。`;
-                document.getElementById(`alert-${elId}`).classList.toggle("none-display");
+                document.getElementById(`alert-${elId}`).classList.remove("none-display");
+                break;
+            }
+        }
+    }else{
+        for (let i = 0; i < lables.length; i++) {
+            if (lables[i].htmlFor == elId) {
+                document.getElementById(`alert-${elId}`).classList.add("none-display");
                 break;
             }
         }
