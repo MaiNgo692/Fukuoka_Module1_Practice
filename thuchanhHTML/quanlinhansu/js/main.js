@@ -1,0 +1,133 @@
+let fullname = document.getElementById("fullname");
+console.log(fullname.lables);
+let sex;
+
+let group = document.getElementById("group");
+let mail = document.getElementById("mail");
+let telnumber = document.getElementById("telnumber");
+let japanlevel = document.getElementById("japanlevel");
+console.log("japanlevel", japanlevel.value);
+let marks = document.getElementById("marks");
+let btnSubmit = document.getElementById("submit");
+let checkForm = true;
+function checkSex() {
+    if (document.getElementById('male').checked) {
+        sex = "male";
+    } else if (document.getElementById('female').checked) {
+        sex = "female";
+    } else {
+        checkForm = false;
+        document.getElementById(`alert-sex`).innerHTML = "「性別」を選んで。";
+    }
+}
+function validateInput() {
+    console.log("check and add user");
+    validateRequired(fullname);
+    validateRequired(mail);
+    validateRequired(telnumber);
+    validateRequired(marks);
+    checkEmail(mail);
+    checkSex();
+    checkTel(telnumber);
+    checkMarks(marks);
+    if (checkForm) {
+        addNewUser();
+    }
+}
+function addNewUser() {
+    let userList = JSON.parse(localStorage.getItem("userList")) || [];
+    user = {
+        fullname: fullname.value,
+        sex: sex,
+        group: group.value,
+        mail: mail.value,
+        telnumber: telnumber.value,
+        japanlevel: japanlevel.value,
+        marks: marks.value,
+    }
+    userList.push(user);
+    localStorage.setItem("userList", JSON.stringify(userList));
+}
+function checkEmail(mail) {
+    if (mail.value != "") {
+        if (!mail.value.match(/[^\s@]+@[^\s@]+\.[^\s@]+/)) {
+            checkForm = false;
+            document.getElementById(`alert-${mail.id}`).innerHTML = "「メール」を正しいに入力して。";
+            document.getElementById(`alert-${mail.id}`).classList.toggle("none-display");
+        } else {
+            document.getElementById(`alert-${mail.id}`).classList.add("none-display");
+        }
+    }
+}
+function checkMarks(mark) {
+    if (mark.value != "") {
+        if (0 > mark.value || mark.value > 180) {
+            checkForm = false;
+            document.getElementById(`alert-${mark.id}`).innerHTML = "0 ～ 180 の「点数」を入力して。";
+            document.getElementById(`alert-${mark.id}`).classList.toggle("none-display");
+        } else {
+            document.getElementById(`alert-${mark.id}`).classList.add("none-display");
+        }
+    }
+}
+function checkTel(tel) {
+    if (tel.value != "") {
+        if (!tel.value.match(/^\d{2}(?:-\d{4}-\d{4}|\d{8}|\d-\d{3,4}-\d{4})$/)) {
+            checkForm = false;
+            document.getElementById(`alert-${telnumber.id}`).innerHTML = "「電話番号」を正しいに入力して";
+            document.getElementById(`alert-${telnumber.id}`).classList.toggle("none-display");
+        } else {
+            document.getElementById(`alert-${telnumber.id}`).classList.add("none-display");
+        }
+    }
+}
+function validateRequired(elementName) {
+    let elId = elementName.id;
+    let inputValue = elementName.value;
+    let lables = document.getElementsByTagName('label');
+    if (inputValue == "") {
+        for (let i = 0; i < lables.length; i++) {
+            if (lables[i].htmlFor == elId) {
+                checkForm = false;
+                document.getElementById(`alert-${elId}`).innerHTML = `「${lables[i].textContent}」を入力して。`;
+                document.getElementById(`alert-${elId}`).classList.toggle("none-display");
+                break;
+            }
+        }
+    }
+}
+function showUserList() {
+    let userList = JSON.parse(localStorage.getItem("userList")) || [];
+    let text = "";
+    for (let i = 0; i < userList.length; i++) {
+        text += `
+        <tr>
+            <td>${i + 1}</td>
+            <td>${userList[i].fullname}</td>
+            <td>${userList[i].sex}</td>
+            <td>${userList[i].group}</td>
+            <td>${userList[i].mail}</td>
+            <td>${userList[i].telnumber}</td>
+            <td>${userList[i].japanlevel}</td>
+            <td>${userList[i].marks}</td>
+            <td><a onclick="deleteUser(${userList[i].id
+            })">削除</a></td>
+        </tr>
+        `;
+    }
+    document.getElementById("show-userList").innerHTML = text;
+}
+showUserList();
+function deleteUser(userId) {
+    let userList = JSON.parse(localStorage.getItem("userList")) || [];
+    for (let i = 0; i < userList.length; i++) {
+        if(userList[i].id == userId){
+            if(confirm("削除しますか。") == true){
+                userList.splice(i,1);
+                localStorage.setItem("userList", JSON.stringify(userList));
+            }
+        }
+        
+    }
+    showUserList();
+}
