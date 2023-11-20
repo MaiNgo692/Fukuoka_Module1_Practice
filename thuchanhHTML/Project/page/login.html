@@ -3,9 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>LogIn Page</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <script src="../js/login.js"></script>
 </head>
 <body>
-    
+    <div class="login">
+        <label for="">email</label>
+        <input type="text" id="email"> <br>
+        <label for="">password</label>
+        <input type="password" id="password"> <br>
+        <button onclick="signIn()">SignIn</button>
+        <p>Bạn chưa có tài khoản <a href="./register.html">SignUp</a></p>
+    </div>
 </body>
 </html>

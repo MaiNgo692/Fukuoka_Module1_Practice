@@ -7,5 +7,20 @@
 // Use this file to add JavaScript to your project
 
 $(document).ready(function(){
-    $("#header").load("./page/header.html");
+    let checkLogin = localStorage.getItem("idUser");
+    if(checkLogin){
+        $("#header").load("./page/header1.html");
+    }else{
+        $("#header").load("./page/header.html");
+    }
 })
+function viewLogInPage() {
+    window.location.href="./page/login.html";
+}
+function viewRegisterPage() {
+    window.location.href="./page/register.html";
+}
+function showPage() {
+   
+}
+showPage();
