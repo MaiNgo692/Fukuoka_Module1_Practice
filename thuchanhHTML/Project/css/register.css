@@ -36,3 +36,17 @@ p{
     /* text-align: center; */
     margin: 20px auto;
 }
+.cart-total {
+    border: 1px solid green;
+    border-radius: 90%;
+    bottom: 20px;
+    color: red;
+}
+span {
+    display: block;
+    color: red;
+}
+
+.none-display {
+    display: none;
+}

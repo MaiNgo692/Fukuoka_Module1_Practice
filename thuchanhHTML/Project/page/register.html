@@ -4,21 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Page</title>
+    <script src="../js/toast.js"></script>
+    <link rel="stylesheet" href="../css/toast.css">
     <script src="../js/register.js"></script>
     <link rel="stylesheet" href="../css/register.css">
 </head>
 <body>
     <div class="register">
-        <label for="">Username</label>
+        <label for="userName">Username</label>
         <input type="text" id="userName"> <br>
-        <label for="">Email</label>
+        <span id="alert-userName" class="none-display"></span>
+        <label for="email">Email</label>
         <input type="text" id="email"> <br>
-        <label for="">Password</label>
+        <span id="alert-email" class="none-display"></span>
+        <label for="password">Password</label>
         <input type="password" id="password"> <br>
-        <label for="">ConfrimPassword</label>
+        <span id="alert-password" class="none-display"></span>
+        <label for="confirmPassword">ConfrimPassword</label>
         <input type="password" id="confirmPassword"> <br>
-        <button onclick="signUp()">SignUp</button>
+        <span id="alert-confirmPassword" class="none-display"></span>
+        <button onclick="validateInput()">SignUp</button>
         <p>Bạn đã có tài khoản <a href="./login.html">LogIn</a></p>
     </div>
+    <div id="toastBox"></div>
 </body>
 </html>
