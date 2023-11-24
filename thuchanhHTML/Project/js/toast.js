@@ -4,6 +4,7 @@ let errorMsg = 'Hãy sửa lỗi!';
 let InvalidMsg = 'Hãy check lại các validate các trường!';
 let successEditProductMsg = 'Sửa thành công sản phẩm!';
 let successEditUserMsg = 'Sửa thành công thông tin người dùng!';
+let successAddCartMsg = 'Bạn đã thêm vào giỏ 1 sản phẩm!';
 let errorMissLogInMsg = 'Hãy đăng nhập để mua hàng!';
 function showToast(msg) {
     let toastBox;
