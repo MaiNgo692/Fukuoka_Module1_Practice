@@ -173,7 +173,7 @@ let products = [
     },
     {
         name: "Lò Nướng Eurosun EOV65ME",
-        catagory: "Thiết Bị Khác",
+        catagory: "Thiết Bị Nhà Bếp Khác",
         img: "https://static.bepantoan.vn/userfiles/images/product/large_lo-nuong-eurosun-eov65mex500x500x4.png",
         price: 10270000,
         quantity: 50,
@@ -183,7 +183,7 @@ let products = [
     },
     {
         name: "Lò Vi Sóng Eurosun MWO-T25EUR",
-        catagory: "Thiết Bị Khác",
+        catagory: "Thiết Bị Nhà Bếp Khác",
         img: "https://static.bepantoan.vn/userfiles/images/product/e8x500x500x4.jpg",
         price: 3630000,
         quantity: 50,
@@ -193,7 +193,7 @@ let products = [
     },
     {
         name: "Lò Nướng Bosch HMH.HBF113BR0A",
-        catagory: "Thiết Bị Khác",
+        catagory: "Thiết Bị Nhà Bếp Khác",
         img: "https://static.bepantoan.vn/userfiles/images/product/MCSA02380996_HBF113BR0A_BuiltInOven_Bosch_STP_EVO_defx500x500x4.jpg",
         price: 9825000,
         quantity: 50,
@@ -203,7 +203,7 @@ let products = [
     },
     {
         name: "Lò Nướng Canzy CZ 601M",
-        catagory: "Thiết Bị Khác",
+        catagory: "Thiết Bị Nhà Bếp Khác",
         img: "https://static.bepantoan.vn/userfiles/images/lo-nuong-canzy-CZ-601M.jpg",
         price: 6889996,
         quantity: 50,
@@ -213,7 +213,7 @@ let products = [
     },
     {
         name: "Lò Nướng Bosch HBN531E1F",
-        catagory: "Thiết Bị Khác",
+        catagory: "Thiết Bị Nhà Bếp Khác",
         img: "https://static.bepantoan.vn/userfiles/images/product/large_lo-nuong-bosch-hbn531e1fx500x500x4.jpg",
         price: 11640000,
         quantity: 50,
@@ -223,7 +223,7 @@ let products = [
     },
     {
         name: "Lò Nướng Bosch HBG675BB1",
-        catagory: "Thiết Bị Khác",
+        catagory: "Thiết Bị Nhà Bếp Khác",
         img: "https://static.bepantoan.vn/userfiles/images/product/large_lo-nuong-bosch-hbg675bb1x500x500x4.jpg",
         price: 25937000,
         quantity: 50,
@@ -233,7 +233,7 @@ let products = [
     },
     {
         name: "Bộ Nồi Arber ABAN 05SMD",
-        catagory: "Thiết Bị Khác",
+        catagory: "Thiết Bị Nhà Bếp Khác",
         img: "https://static.bepantoan.vn/userfiles/images/bo-noi-chao-aber-5-mon-an-05smd.jpg",
         price: 3050000,
         quantity: 50,
@@ -243,7 +243,7 @@ let products = [
     },
     {
         name: "Bộ Nồi Arber ABAN 05SMDT",
-        catagory: "Thiết Bị Khác",
+        catagory: "Thiết Bị Nhà Bếp Khác",
         img: "https://static.bepantoan.vn/userfiles/images/an05smdt.jpg",
         price: 2680000,
         quantity: 50,
@@ -253,7 +253,7 @@ let products = [
     },
     {
         name: "Ấm Đun Từ Arber AB 03DT",
-        catagory: "Thiết Bị Khác",
+        catagory: "Thiết Bị Nhà Bếp Khác",
         img: "https://static.bepantoan.vn/userfiles/images/am-dun-nuoc-tu-arber-ab-03dt.jpg",
         price: 1050000,
         quantity: 50,
@@ -263,7 +263,7 @@ let products = [
     },
     {
         name: "Bộ Nồi Eurosun MC1608-PASSION",
-        catagory: "Thiết Bị Khác",
+        catagory: "Thiết Bị Nhà Bếp Khác",
         img: "https://static.bepantoan.vn/userfiles/images/1608.jpg",
         price: 3800000,
         quantity: 50,
@@ -273,7 +273,7 @@ let products = [
     },
     {
         name: "Nồi Luộc Gà MS1601-KINGS",
-        catagory: "Thiết Bị Khác",
+        catagory: "Thiết Bị Nhà Bếp Khác",
         img: "https://static.bepantoan.vn/userfiles/images/eu.png",
         price: 1350000,
         quantity: 50,
@@ -283,7 +283,7 @@ let products = [
     },
     {
         name: "Bộ Nồi Inox MC1801-LUXURY",
-        catagory: "Thiết Bị Khác",
+        catagory: "Thiết Bị Nhà Bếp Khác",
         img: "https://static.bepantoan.vn/userfiles/images/mc1801-luxury%202(1).png",
         price: 4490000,
         quantity: 50,
@@ -293,7 +293,7 @@ let products = [
     },
     {
         name: "Bộ Nồi Inox MC1702-HARMONY",
-        catagory: "Thiết Bị Khác",
+        catagory: "Thiết Bị Nhà Bếp Khác",
         img: "https://static.bepantoan.vn/userfiles/images/noi-tu-eurosun-mc1702-harmony.png",
         price: 3300000,
         quantity: 50,
@@ -309,6 +309,7 @@ let totalPage = Math.ceil(products.length / totalItem);
 let start;
 let end;
 let curentPage = 1;
+let productsNeedShow;
 function startEnd(curentPage) {
     start = (curentPage - 1) * totalItem;
     end = curentPage * totalItem;
@@ -330,7 +331,8 @@ let showProduct;
 let pages;
 window.onload = (function () {
     showProduct = document.getElementById("show-product");
-    showProducts(products);
+    productsNeedShow = products
+    showProducts(productsNeedShow);
     pages = document.getElementsByClassName("pagination")[0];
     pageListShow();
 });
@@ -368,7 +370,31 @@ function showProducts(products) {
     console.log(showProduct);
     showProduct.innerHTML = text;
 }
-
+function sortProduct(type) {
+    let navList = document.getElementsByClassName('nav-link');
+    for (let i = 0; i < navList.length; i++) {
+        if(navList[i].textContent == type){
+            navList[i].classList.add('link-secondary');
+            navList[i].classList.remove('link-dark');
+        }else{
+            navList[i].classList.add('link-dark');
+            navList[i].classList.remove('link-secondary');
+        }
+    }
+    let result;
+    let products = JSON.parse(localStorage.getItem("products")) || [];
+    if(type=='Trang chủ'){
+        result = products;
+    }else{
+        result = products.filter((item)=>{
+            return item.catagory == type;
+        });
+    }   
+    productsNeedShow = result
+    getTotalPage(result);
+    pageListShow();
+    showProducts(result);
+}
 function addToCart(idProduct) {
     let products = JSON.parse(localStorage.getItem("products")) || [];
     let users = JSON.parse(localStorage.getItem("users")) || [];
@@ -460,5 +486,5 @@ function showPage(curent) {
         }
     }
     startEnd(curent);
-    showProducts(products);
+    showProducts(productsNeedShow);
 }       
