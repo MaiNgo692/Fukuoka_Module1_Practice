@@ -1,9 +1,10 @@
 
 let successMsg = 'Đăng ký thành công!';
-let errorMsg = 'Please fix the error!';
+let errorMsg = 'Hãy sửa lỗi!';
 let InvalidMsg = 'Hãy check lại các validate các trường!';
 let successEditProductMsg = 'Sửa thành công sản phẩm!';
 let successEditUserMsg = 'Sửa thành công thông tin người dùng!';
+let errorMissLogInMsg = 'Hãy đăng nhập để mua hàng!';
 function showToast(msg) {
     let toastBox;
     // window.onload = (function () {

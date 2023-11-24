@@ -6,304 +6,304 @@
 // This file is intentionally blank
 // Use this file to add JavaScript to your project
 
-$(document).ready(function(){
+$(document).ready(function () {
     let checkLogin = localStorage.getItem("idUser");
-    if(checkLogin){
+    if (checkLogin) {
         $("#header").load("./page/header1.html");
-    }else{
+    } else {
         $("#header").load("./page/header.html");
     }
 })
 
-let products=[
+let products = [
     {
-        name: "Bếp Từ Đôi Bosch PPI8256MS" ,
-        catagory:"Bếp Từ" ,
-        img:"https://static.bepantoan.vn/userfiles/images/82560.jpeg",
-        price:9980000,
+        name: "Bếp Từ Đôi Bosch PPI8256MS",
+        catagory: "Bếp Từ",
+        img: "https://static.bepantoan.vn/userfiles/images/82560.jpeg",
+        price: 9980000,
         quantity: 50,
-        status:0,
-        brand:"Bosch",
+        status: 0,
+        brand: "Bosch",
     },
     {
-        name: "Bếp Từ Đôi Kainer KA-828EU" ,
-        catagory:"Bếp Từ" ,
-        img:"https://static.bepantoan.vn/userfiles/images/828-EU%202.jpg",
-        price:16800000,
+        name: "Bếp Từ Đôi Kainer KA-828EU",
+        catagory: "Bếp Từ",
+        img: "https://static.bepantoan.vn/userfiles/images/828-EU%202.jpg",
+        price: 16800000,
         quantity: 50,
-        status:0,
-        brand:"Kainer",
+        status: 0,
+        brand: "Kainer",
     },
     {
-        name: "Bếp Từ Đôi Kainer KA-6262EU" ,
-        catagory:"Bếp Từ" ,
-        img:"https://static.bepantoan.vn/userfiles/images/ka.jpg",
-        price:16500000,
+        name: "Bếp Từ Đôi Kainer KA-6262EU",
+        catagory: "Bếp Từ",
+        img: "https://static.bepantoan.vn/userfiles/images/ka.jpg",
+        price: 16500000,
         quantity: 50,
-        status:0,
-        brand:"Kainer",
+        status: 0,
+        brand: "Kainer",
     },
     {
-        name: "Bếp Từ Đôi Kainer KA-888EU" ,
-        catagory:"Bếp Từ" ,
-        img:"https://static.bepantoan.vn/userfiles/images/888-EU%202.jpg",
-        price:13800000,
+        name: "Bếp Từ Đôi Kainer KA-888EU",
+        catagory: "Bếp Từ",
+        img: "https://static.bepantoan.vn/userfiles/images/888-EU%202.jpg",
+        price: 13800000,
         quantity: 50,
-        status:0,
-        brand:"Kainer",
+        status: 0,
+        brand: "Kainer",
     },
     {
-        name: "Bếp Từ Đức Bosch PUC631BB2E" ,
-        catagory:"Bếp Từ" ,
-        img:"https://static.bepantoan.vn/userfiles/images/product/large_bep-tu-bosch-puc631bb2ex500x500x4.jpg",
-        price:10400000,
+        name: "Bếp Từ Đức Bosch PUC631BB2E",
+        catagory: "Bếp Từ",
+        img: "https://static.bepantoan.vn/userfiles/images/product/large_bep-tu-bosch-puc631bb2ex500x500x4.jpg",
+        price: 10400000,
         quantity: 50,
-        status:0,
-        brand:"Bosch",
+        status: 0,
+        brand: "Bosch",
     },
     {
-        name: "Máy Hút Mùi Kính Cong Kainer KA-270C" ,
-        catagory:"Máy Hút Mùi" ,
-        img:"https://static.bepantoan.vn/userfiles/images/k1.jpg",
-        price:3800000,
+        name: "Máy Hút Mùi Kính Cong Kainer KA-270C",
+        catagory: "Máy Hút Mùi",
+        img: "https://static.bepantoan.vn/userfiles/images/k1.jpg",
+        price: 3800000,
         quantity: 50,
-        status:0,
-        brand:"Kainer",
+        status: 0,
+        brand: "Kainer",
     },
     {
-        name: "Máy Hút Mùi Canzy CZ-7002G" ,
-        catagory:"Máy Hút Mùi" ,
-        img:"https://static.bepantoan.vn/userfiles/images/product/large_may-hut-mui-canzy-cz-7002gx500x500x4.jpg",
-        price:2990000,
+        name: "Máy Hút Mùi Canzy CZ-7002G",
+        catagory: "Máy Hút Mùi",
+        img: "https://static.bepantoan.vn/userfiles/images/product/large_may-hut-mui-canzy-cz-7002gx500x500x4.jpg",
+        price: 2990000,
         quantity: 50,
-        status:0,
-        brand:"Canzy",
+        status: 0,
+        brand: "Canzy",
     },
     {
-        name: "Máy Hút Mùi Canzy CZ-70TS" ,
-        catagory:"Máy Hút Mùi" ,
-        img:"https://static.bepantoan.vn/userfiles/images/may-hut-mui-canzy-cz-70ts-p8955.jpg",
-        price:2860000,
+        name: "Máy Hút Mùi Canzy CZ-70TS",
+        catagory: "Máy Hút Mùi",
+        img: "https://static.bepantoan.vn/userfiles/images/may-hut-mui-canzy-cz-70ts-p8955.jpg",
+        price: 2860000,
         quantity: 50,
-        status:0,
-        brand:"Canzy",
+        status: 0,
+        brand: "Canzy",
     },
     {
-        name: "Máy Hút Mùi Bosch DFT63AC50" ,
-        catagory:"Máy Hút Mùi" ,
-        img:"https://static.bepantoan.vn/userfiles/images/product/large_may-hut-mui-bosch-dft63ac50x500x500x4.jpg",
-        price:6680000,
+        name: "Máy Hút Mùi Bosch DFT63AC50",
+        catagory: "Máy Hút Mùi",
+        img: "https://static.bepantoan.vn/userfiles/images/product/large_may-hut-mui-bosch-dft63ac50x500x500x4.jpg",
+        price: 6680000,
         quantity: 50,
-        status:0,
-        brand:"Bosch",
+        status: 0,
+        brand: "Bosch",
     },
     {
-        name: "Máy Hút Mùi Âm Trần Canzy CZ 68D" ,
-        catagory:"Máy Hút Mùi" ,
-        img:"https://static.bepantoan.vn/userfiles/images/68d.jpg",
-        price:6390000,
+        name: "Máy Hút Mùi Âm Trần Canzy CZ 68D",
+        catagory: "Máy Hút Mùi",
+        img: "https://static.bepantoan.vn/userfiles/images/68d.jpg",
+        price: 6390000,
         quantity: 50,
-        status:0,
-        brand:"Canzy",
+        status: 0,
+        brand: "Canzy",
     },
     {
-        name: "Máy Hút Mùi Chữ T Kainer KA-70T" ,
-        catagory:"Máy Hút Mùi" ,
-        img:"https://static.bepantoan.vn/userfiles/images/ka70t.jpg",
-        price:5600000,
+        name: "Máy Hút Mùi Chữ T Kainer KA-70T",
+        catagory: "Máy Hút Mùi",
+        img: "https://static.bepantoan.vn/userfiles/images/ka70t.jpg",
+        price: 5600000,
         quantity: 50,
-        status:0,
-        brand:"Kainer",
+        status: 0,
+        brand: "Kainer",
     },
     {
-        name: "Máy Hút Mùi Bosch DWB77CM50" ,
-        catagory:"Máy Hút Mùi" ,
-        img:"https://static.bepantoan.vn/userfiles/images/product/MCSA02612101_DWB77CM50_ChimneyHood_Bosch_STP_defx500x500x4.jpg",
-        price:16600000,
+        name: "Máy Hút Mùi Bosch DWB77CM50",
+        catagory: "Máy Hút Mùi",
+        img: "https://static.bepantoan.vn/userfiles/images/product/MCSA02612101_DWB77CM50_ChimneyHood_Bosch_STP_defx500x500x4.jpg",
+        price: 16600000,
         quantity: 50,
-        status:0,
-        brand:"Bosch",
+        status: 0,
+        brand: "Bosch",
     },
     {
-        name: "Máy Hút Mùi Cổ Điển Canzy CZ 506I" ,
-        catagory:"Máy Hút Mùi" ,
-        img:"https://static.bepantoan.vn/userfiles/images/506i.jpg",
-        price:2690000,
+        name: "Máy Hút Mùi Cổ Điển Canzy CZ 506I",
+        catagory: "Máy Hút Mùi",
+        img: "https://static.bepantoan.vn/userfiles/images/506i.jpg",
+        price: 2690000,
         quantity: 50,
-        status:0,
-        brand:"Canzy",
+        status: 0,
+        brand: "Canzy",
 
     },
     {
-        name: "Bếp Ga Âm Canzy CZ-862" ,
-        catagory:"Bếp Ga" ,
-        img:"https://static.bepantoan.vn/userfiles/images/Canzy%20CZ-862%201.jpg",
-        price:3680000,
+        name: "Bếp Ga Âm Canzy CZ-862",
+        catagory: "Bếp Ga",
+        img: "https://static.bepantoan.vn/userfiles/images/Canzy%20CZ-862%201.jpg",
+        price: 3680000,
         quantity: 50,
-        status:0,
-        brand:"Canzy",
+        status: 0,
+        brand: "Canzy",
 
     },
     {
-        name: "Bếp Ga Dương Canaval 338" ,
-        catagory:"Bếp Ga" ,
-        img:"https://static.bepantoan.vn/userfiles/images/z2118692225675_470f575354537b57e54f85e568a7e231.jpg",
-        price:1680000,
+        name: "Bếp Ga Dương Canaval 338",
+        catagory: "Bếp Ga",
+        img: "https://static.bepantoan.vn/userfiles/images/z2118692225675_470f575354537b57e54f85e568a7e231.jpg",
+        price: 1680000,
         quantity: 50,
-        status:0,
-        brand:"Canaval",
+        status: 0,
+        brand: "Canaval",
     },
     {
-        name: "Bếp Dương Hồng Ngoại Taka - 120D" ,
-        catagory:"Bếp Ga" ,
-        img:"https://static.bepantoan.vn/userfiles/images/120d.jpg",
-        price:1350000,
+        name: "Bếp Dương Hồng Ngoại Taka - 120D",
+        catagory: "Bếp Ga",
+        img: "https://static.bepantoan.vn/userfiles/images/120d.jpg",
+        price: 1350000,
         quantity: 50,
-        status:0,
-        brand:"Taka",
+        status: 0,
+        brand: "Taka",
     },
     {
-        name: "Bếp Ga 2 Lò Model CA6868" ,
-        catagory:"Bếp Ga" ,
-        img:"https://static.bepantoan.vn/userfiles/2022/06/09/ba2.png",
-        price:"",
+        name: "Bếp Ga 2 Lò Model CA6868",
+        catagory: "Bếp Ga",
+        img: "https://static.bepantoan.vn/userfiles/2022/06/09/ba2.png",
+        price: "",
         quantity: 50,
-        status:0,
-        brand:"Canaval",
+        status: 0,
+        brand: "Canaval",
     },
     {
-        name: "Lò Nướng Eurosun EOV65ME" ,
-        catagory:"Thiết Bị Khác" ,
-        img:"https://static.bepantoan.vn/userfiles/images/product/large_lo-nuong-eurosun-eov65mex500x500x4.png",
-        price:10270000,
+        name: "Lò Nướng Eurosun EOV65ME",
+        catagory: "Thiết Bị Khác",
+        img: "https://static.bepantoan.vn/userfiles/images/product/large_lo-nuong-eurosun-eov65mex500x500x4.png",
+        price: 10270000,
         quantity: 50,
-        status:0,
-        brand:"Eurosun",
+        status: 0,
+        brand: "Eurosun",
 
     },
     {
-        name: "Lò Vi Sóng Eurosun MWO-T25EUR" ,
-        catagory:"Thiết Bị Khác" ,
-        img:"https://static.bepantoan.vn/userfiles/images/product/e8x500x500x4.jpg",
-        price:3630000,
+        name: "Lò Vi Sóng Eurosun MWO-T25EUR",
+        catagory: "Thiết Bị Khác",
+        img: "https://static.bepantoan.vn/userfiles/images/product/e8x500x500x4.jpg",
+        price: 3630000,
         quantity: 50,
-        status:0,
-        brand:"Eurosun",
+        status: 0,
+        brand: "Eurosun",
 
     },
     {
-        name: "Lò Nướng Bosch HMH.HBF113BR0A" ,
-        catagory:"Thiết Bị Khác" ,
-        img:"https://static.bepantoan.vn/userfiles/images/product/MCSA02380996_HBF113BR0A_BuiltInOven_Bosch_STP_EVO_defx500x500x4.jpg",
-        price:9825000,
+        name: "Lò Nướng Bosch HMH.HBF113BR0A",
+        catagory: "Thiết Bị Khác",
+        img: "https://static.bepantoan.vn/userfiles/images/product/MCSA02380996_HBF113BR0A_BuiltInOven_Bosch_STP_EVO_defx500x500x4.jpg",
+        price: 9825000,
         quantity: 50,
-        status:0,
-        brand:"Bosch",
+        status: 0,
+        brand: "Bosch",
 
     },
     {
-        name: "Lò Nướng Canzy CZ 601M" ,
-        catagory:"Thiết Bị Khác" ,
-        img:"https://static.bepantoan.vn/userfiles/images/lo-nuong-canzy-CZ-601M.jpg",
-        price:6889996,
+        name: "Lò Nướng Canzy CZ 601M",
+        catagory: "Thiết Bị Khác",
+        img: "https://static.bepantoan.vn/userfiles/images/lo-nuong-canzy-CZ-601M.jpg",
+        price: 6889996,
         quantity: 50,
-        status:0,
-        brand:"Canzy",
+        status: 0,
+        brand: "Canzy",
 
     },
     {
-        name: "Lò Nướng Bosch HBN531E1F" ,
-        catagory:"Thiết Bị Khác" ,
-        img:"https://static.bepantoan.vn/userfiles/images/product/large_lo-nuong-bosch-hbn531e1fx500x500x4.jpg",
-        price:11640000,
+        name: "Lò Nướng Bosch HBN531E1F",
+        catagory: "Thiết Bị Khác",
+        img: "https://static.bepantoan.vn/userfiles/images/product/large_lo-nuong-bosch-hbn531e1fx500x500x4.jpg",
+        price: 11640000,
         quantity: 50,
-        status:0,
-        brand:"Bosch",
+        status: 0,
+        brand: "Bosch",
 
     },
     {
-        name: "Lò Nướng Bosch HBG675BB1" ,
-        catagory:"Thiết Bị Khác" ,
-        img:"https://static.bepantoan.vn/userfiles/images/product/large_lo-nuong-bosch-hbg675bb1x500x500x4.jpg",
-        price:25937000,
+        name: "Lò Nướng Bosch HBG675BB1",
+        catagory: "Thiết Bị Khác",
+        img: "https://static.bepantoan.vn/userfiles/images/product/large_lo-nuong-bosch-hbg675bb1x500x500x4.jpg",
+        price: 25937000,
         quantity: 50,
-        status:0,
-        brand:"Bosch",
+        status: 0,
+        brand: "Bosch",
 
     },
     {
-        name: "Bộ Nồi Arber ABAN 05SMD" ,
-        catagory:"Thiết Bị Khác" ,
-        img:"https://static.bepantoan.vn/userfiles/images/bo-noi-chao-aber-5-mon-an-05smd.jpg",
-        price:3050000,
+        name: "Bộ Nồi Arber ABAN 05SMD",
+        catagory: "Thiết Bị Khác",
+        img: "https://static.bepantoan.vn/userfiles/images/bo-noi-chao-aber-5-mon-an-05smd.jpg",
+        price: 3050000,
         quantity: 50,
-        status:0,
-        brand:"Arber",
+        status: 0,
+        brand: "Arber",
 
     },
     {
-        name: "Bộ Nồi Arber ABAN 05SMDT" ,
-        catagory:"Thiết Bị Khác" ,
-        img:"https://static.bepantoan.vn/userfiles/images/an05smdt.jpg",
-        price:2680000,
+        name: "Bộ Nồi Arber ABAN 05SMDT",
+        catagory: "Thiết Bị Khác",
+        img: "https://static.bepantoan.vn/userfiles/images/an05smdt.jpg",
+        price: 2680000,
         quantity: 50,
-        status:0,
-        brand:"Arber",
+        status: 0,
+        brand: "Arber",
 
     },
     {
-        name: "Ấm Đun Từ Arber AB 03DT" ,
-        catagory:"Thiết Bị Khác" ,
-        img:"https://static.bepantoan.vn/userfiles/images/am-dun-nuoc-tu-arber-ab-03dt.jpg",
-        price:1050000,
+        name: "Ấm Đun Từ Arber AB 03DT",
+        catagory: "Thiết Bị Khác",
+        img: "https://static.bepantoan.vn/userfiles/images/am-dun-nuoc-tu-arber-ab-03dt.jpg",
+        price: 1050000,
         quantity: 50,
-        status:0,
-        brand:"Arber",
+        status: 0,
+        brand: "Arber",
 
     },
     {
-        name: "Bộ Nồi Eurosun MC1608-PASSION" ,
-        catagory:"Thiết Bị Khác" ,
-        img:"https://static.bepantoan.vn/userfiles/images/1608.jpg",
-        price:3800000,
+        name: "Bộ Nồi Eurosun MC1608-PASSION",
+        catagory: "Thiết Bị Khác",
+        img: "https://static.bepantoan.vn/userfiles/images/1608.jpg",
+        price: 3800000,
         quantity: 50,
-        status:0,
-        brand:"Eurosun",
+        status: 0,
+        brand: "Eurosun",
 
     },
     {
-        name: "Nồi Luộc Gà MS1601-KINGS" ,
-        catagory:"Thiết Bị Khác" ,
-        img:"https://static.bepantoan.vn/userfiles/images/eu.png",
-        price:1350000,
+        name: "Nồi Luộc Gà MS1601-KINGS",
+        catagory: "Thiết Bị Khác",
+        img: "https://static.bepantoan.vn/userfiles/images/eu.png",
+        price: 1350000,
         quantity: 50,
-        status:0,
-        brand:"Eurosun",
+        status: 0,
+        brand: "Eurosun",
 
     },
     {
-        name: "Bộ Nồi Inox MC1801-LUXURY" ,
-        catagory:"Thiết Bị Khác" ,
-        img:"https://static.bepantoan.vn/userfiles/images/mc1801-luxury%202(1).png",
-        price:4490000,
+        name: "Bộ Nồi Inox MC1801-LUXURY",
+        catagory: "Thiết Bị Khác",
+        img: "https://static.bepantoan.vn/userfiles/images/mc1801-luxury%202(1).png",
+        price: 4490000,
         quantity: 50,
-        status:0,
-        brand:"Eurosun",
+        status: 0,
+        brand: "Eurosun",
 
     },
     {
-        name: "Bộ Nồi Inox MC1702-HARMONY" ,
-        catagory:"Thiết Bị Khác" ,
-        img:"https://static.bepantoan.vn/userfiles/images/noi-tu-eurosun-mc1702-harmony.png",
-        price:3300000,
+        name: "Bộ Nồi Inox MC1702-HARMONY",
+        catagory: "Thiết Bị Khác",
+        img: "https://static.bepantoan.vn/userfiles/images/noi-tu-eurosun-mc1702-harmony.png",
+        price: 3300000,
         quantity: 50,
-        status:0,
-        brand:"Eurosun",
+        status: 0,
+        brand: "Eurosun",
     },
 ]
 
-localStorage.setItem("products",JSON.stringify(products));
-localStorage.setItem("idAdmin",'9819107065');
+localStorage.setItem("products", JSON.stringify(products));
+localStorage.setItem("idAdmin", '9819107065');
 let totalItem = 3;
 let totalPage = Math.ceil(products.length / totalItem);
 let start;
@@ -320,10 +320,11 @@ function getTotalPage(params) {
 
 
 function viewLogInPage() {
-    window.location.href="./page/login.html";
+    localStorage.removeItem('idUser');
+    window.location.href = "./page/login.html";
 }
 function viewRegisterPage() {
-    window.location.href="./page/register.html";
+    window.location.href = "./page/register.html";
 }
 let showProduct;
 let pages;
@@ -337,11 +338,11 @@ function showProducts(products) {
     const VND = new Intl.NumberFormat('vi-VN', {
         style: 'currency',
         currency: 'VND',
-      });
-    let text="";
-   for (let i = 0; i < products.length; i++) {
-    if (i >= start && i < end) {
-        text +=`
+    });
+    let text = "";
+    for (let i = 0; i < products.length; i++) {
+        if (i >= start && i < end) {
+            text += `
         <div class="col  mb-5 shadow p-3 bg-body rounded">
                     <div class="card h-100">
                         <!-- Product image-->
@@ -357,15 +358,63 @@ function showProducts(products) {
                         </div>
                         <!-- Product actions-->
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-primary mt-auto" href="#">Add to cart</a></div>
+                            <div class="text-center"><a class="btn btn-outline-primary mt-auto" href="#" onclick="addToCart(${i})">Add to cart</a></div>
                         </div>
                     </div>
                 </div>
         `;
-   }}
-   console.log(showProduct);
-    showProduct.innerHTML=text;
+        }
+    }
+    console.log(showProduct);
+    showProduct.innerHTML = text;
 }
+
+function addToCart(idProduct) {
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let idUser = JSON.parse(localStorage.getItem("idUser")) || [];
+    if (idUser.length == 0) {
+        showToast(errorMissLogInMsg);
+    } else {
+        let user = users.filter((item) => {
+            return item.id == idUser;
+        });
+        let cart = user[0].cart;
+        if (cart.some(item => item.name == products[idProduct].name &&
+            item.catagory == products[idProduct].catagory &&
+            item.price == products[idProduct].price &&
+            item.brand == products[idProduct].brand &&
+            item.img == products[idProduct].img &&
+            products[idProduct].status == 0 &&
+            products[idProduct].quantity >= 1)) {
+            item.quantity = item.quantity + 1;
+        }else if(products[idProduct].status == 0 &&
+            products[idProduct].quantity >= 1){
+                cart.push({
+                    name:products[idProduct].name,
+                    catagory:products[idProduct].catagory,
+                    img:products[idProduct].img,
+                    price:products[idProduct].price,
+                    quantity:1
+                });
+            }
+            products[idProduct].quantity = products[idProduct].quantity - 1;
+            localStorage.setItem('users', JSON.stringify(users));
+            localStorage.getItem('products', JSON.stringify(products));
+            showCartQuantity();
+        }
+}
+function showCartQuantity() {
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let idUser = JSON.parse(localStorage.getItem("idUser")) || [];
+    let user = users.filter((item) => {
+        return item.id == idUser;
+    });
+    let viewCart = document.getElementById('cart-total');
+    if(user.length !=0){
+        viewCart.textContent = user[0].cart.length;
+    }
+}
+showCartQuantity();
 function pageListShow() {
     let text = "";
     for (let i = 1; i <= totalPage; i++) {
@@ -385,7 +434,7 @@ function pageListShow() {
       </span>
     `;
     document.getElementsByClassName("page-item")[0].classList.add("text-danger");
-    
+
 }
 
 function prePage() {

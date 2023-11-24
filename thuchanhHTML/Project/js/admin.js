@@ -1,5 +1,10 @@
 let editId;
 let editProductId;
+function showIndextPage() {
+    let idAdmin = JSON.parse(localStorage.getItem("idAdmin"));
+    localStorage.setItem("idUser",idAdmin);
+   window.location.href="../index.html";
+}
 function showUserList() {
     document.getElementsByClassName('users')[0].classList.remove('d-none');
     document.getElementsByClassName('products')[0].classList.add('d-none');
