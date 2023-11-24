@@ -76,13 +76,28 @@
                 <option value="price">Price</option>
                 <option value="quantity">Quantity</option>
             </select>
-            <select class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"  name="filter-user" id="filter-product">
-                <option value="" selected>Lựa chọn lọc</option>
-                <option value="name">Name</option>
-                <option value="catagory">Catagory</option>
-                <option value="brand">Brand</option>
-                <option value="price">Price</option>
-                <option value="quantity">Quantity</option>
+            <select class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"  name="filter-catagory" id="filter-catagory">
+                <option value="" selected>Lọc theo Catagory</option>
+                <option value="Bếp Ga">Bếp Ga</option>
+                <option value="Bếp Từ">Bếp Từ</option>
+                <option value="Máy Hút Mùi">Máy Hút Mùi</option>
+                <option value="Thiết Bị Nhà Bếp Khác">Thiết Bị Nhà Bếp Khác</option>
+            </select>
+            <select class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"  name="filter-brand" id="filter-brand">
+                <option value="" selected>Lọc theo Brand</option>
+                <option value="Bosch">Bosch</option>
+                <option value="Kainer">Kainer</option>
+                <option value="Canzy">Canzy</option>
+                <option value="Canaval">Canaval</option>
+                <option value="Taka">Taka</option>
+                <option value="Eurosun">Eurosun</option>
+                <option value="Arber">Arber</option>
+            </select>
+            <select class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"  name="filter-price" id="filter-price">
+                <option value="" selected>Lọc theo Price</option>
+                <option value="3000000">0 &lt = 3M</option>
+                <option value="10000000">3M ~ 10M </option>
+                <option value="10000001">&gt 10M</option>
             </select>
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
                 <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
@@ -185,6 +200,11 @@
                         <div class="form-group">
                             <label for="product-name" class="col-form-label">Product Name:</label>
                             <input type="text" class="form-control" id="product-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="img" class="col-form-label">Image:</label>
+                            <img src="" alt="" id="product-img">
+                            <input type="file" class="form-control" id="img" onchange="previewFile()">
                         </div>
                         <div class="form-group">
                             <label for="catagory" class="col-form-label">Catagory:</label>

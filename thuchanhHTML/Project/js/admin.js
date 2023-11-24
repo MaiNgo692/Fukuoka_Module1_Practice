@@ -2,7 +2,9 @@ let editId;
 let editProductId;
 let sortUser;
 let sortProduct;
-
+let filterProductCatagory;
+let filterProductBrand;
+let filterProductPrice;
 let users = JSON.parse(localStorage.getItem('users')) || [];
 let products = JSON.parse(localStorage.getItem('products')) || [];
 let productsNeedShow = products;
@@ -60,9 +62,40 @@ function sortProductFun(type) {
             break;
     }
     productsNeedShow = result;
-    showProductList(result);
+    showProductList(productsNeedShow);
 }
-
+function filterProductByCatagory(type) {
+    let result = productsNeedShow.filter((item) => {
+        return item.catagory == type;
+    });
+    productsNeedShow = result;
+    showProductList(productsNeedShow);
+}
+function filterProductByBrand(type) {
+    let result = productsNeedShow.filter((item) => {
+        return item.brand == type;
+    });
+    productsNeedShow = result;
+    showProductList(productsNeedShow);
+}
+function filterProductByPrice(type) {
+    let result;
+    if (type == 10000001) {
+        result = productsNeedShow.filter((item) => {
+            return item.price >= type;
+        });
+    } else if (type == 3000000) {
+        result = productsNeedShow.filter((item) => {
+            return item.price <= type;
+        });
+    } else {
+        result = productsNeedShow.filter(item => 
+        item.price <= type && item.price >= 3000000
+        );
+    }
+    productsNeedShow = result;
+    showProductList(productsNeedShow);
+}
 function showIndextPage() {
     let idAdmin = JSON.parse(localStorage.getItem("idAdmin"));
     localStorage.setItem("idUser", idAdmin);
@@ -149,6 +182,19 @@ function showProductList(products) {
     sortProduct.addEventListener("change", (event) => {
         sortProductFun(event.target.value);
     })
+    filterProductCatagory = document.getElementById('filter-catagory');
+    console.log("catagory", filterProductCatagory);
+    filterProductCatagory.addEventListener("change", (event) => {
+        filterProductByCatagory(event.target.value);
+    })
+    filterProductBrand = document.getElementById('filter-brand');
+    filterProductBrand.addEventListener("change", (event) => {
+        filterProductByBrand(event.target.value);
+    })
+    filterProductPrice = document.getElementById('filter-price');
+    filterProductPrice.addEventListener("change", (event) => {
+        filterProductByPrice(event.target.value);
+    })
 }
 function changeStatusProduct(idProduct) {
     productsNeedShow[idProduct].status = productsNeedShow[idProduct].status == 0 ? 1 : 0;
@@ -157,6 +203,7 @@ function changeStatusProduct(idProduct) {
 }
 function editProduct(idProduct) {
     document.getElementById('product-name').value = productsNeedShow[idProduct].name;
+    document.getElementById('product-img').src = productsNeedShow[idProduct].img;
     document.getElementById('catagory').value = productsNeedShow[idProduct].catagory;
     document.getElementById('brand').value = productsNeedShow[idProduct].brand;
     document.getElementById('price').value = productsNeedShow[idProduct].price;
@@ -165,6 +212,7 @@ function editProduct(idProduct) {
 }
 function saveProduct(idProduct) {
     productsNeedShow[idProduct].name = document.getElementById('product-name').value;
+    productsNeedShow[idProduct].img = document.getElementById('product-img').src;
     productsNeedShow[idProduct].catagory = document.getElementById('catagory').value;
     productsNeedShow[idProduct].brand = document.getElementById('brand').value;
     productsNeedShow[idProduct].price = document.getElementById('price').value;
@@ -230,3 +278,17 @@ function saveUser(idUser) {
     showToast(successEditUserMsg);
     showUserList(usersNeedShow);
 }
+function previewFile() {
+    var preview = document.getElementById('product-img');
+    var file    = document.querySelector('input[type=file]').files[0];
+    var reader  = new FileReader();
+    reader.onloadend = function () {
+      preview.src = reader.result;
+    }
+  
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      preview.src = "";
+    }
+  }

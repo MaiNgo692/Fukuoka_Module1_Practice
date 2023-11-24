@@ -304,7 +304,7 @@ let products = [
     },
 ]
 
-localStorage.setItem("products", JSON.stringify(products));
+// localStorage.setItem("products", JSON.stringify(products));
 localStorage.setItem("idAdmin", '9819107065');
 let totalItem = 3;
 let totalPage = Math.ceil(products.length / totalItem);
