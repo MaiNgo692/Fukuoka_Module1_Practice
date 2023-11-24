@@ -88,9 +88,9 @@ function checkPassword(password) {
     users.push(obj);
     localStorage.setItem("users",JSON.stringify(users));
     showToast(successMsg);
-    setTimeout(()=>{
-        window.location.href="./login.html";
-    },3000)
+    // setTimeout(()=>{
+    //     window.location.href="./login.html";
+    // },3000)
     
  }
  function validateRequired(elementName) {

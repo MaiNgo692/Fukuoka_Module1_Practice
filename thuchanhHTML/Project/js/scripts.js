@@ -9,7 +9,9 @@
 $(document).ready(function () {
     let checkLogin = localStorage.getItem("idUser");
     if (checkLogin) {
-        $("#header").load("./page/header1.html");
+        $("#header").load("./page/header1.html",function(){
+            showCartQuantity();
+        });
     } else {
         $("#header").load("./page/header.html");
     }
@@ -329,12 +331,14 @@ function viewRegisterPage() {
 }
 let showProduct;
 let pages;
+
 window.onload = (function () {
     showProduct = document.getElementById("show-product");
     productsNeedShow = products
     showProducts(productsNeedShow);
     pages = document.getElementsByClassName("pagination")[0];
     pageListShow();
+
 });
 function showProducts(products) {
     const VND = new Intl.NumberFormat('vi-VN', {
@@ -427,12 +431,14 @@ function addToCart(idProduct) {
     }
 }
 function showCartQuantity() {
+    let viewCart = document.getElementById('cart-total');
+    console.log("cart:",viewCart);
     let users = JSON.parse(localStorage.getItem("users")) || [];
     let idUser = JSON.parse(localStorage.getItem("idUser")) || [];
     let user = users.filter((item) => {
         return item.id == idUser;
     });
-    let viewCart = document.getElementById('cart-total');
+    
     if (user.length != 0) {
         viewCart.textContent = user[0].cart.length;
     }

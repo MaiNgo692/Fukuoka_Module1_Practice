@@ -1,0 +1,18 @@
+h2{
+    text-align: center;
+    padding: 20px;
+}
+.users, .products{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.user-action{
+    display: inline-flex;
+    padding:20px ;
+}
+td img{
+    width: 100px;
+}
+
