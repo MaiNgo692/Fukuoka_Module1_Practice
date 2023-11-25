@@ -9,6 +9,8 @@ let users = JSON.parse(localStorage.getItem('users')) || [];
 let products = JSON.parse(localStorage.getItem('products')) || [];
 let productsNeedShow = products;
 let usersNeedShow = users;
+showUserList(users);
+
 function sortUserFun(type) {
     let users = JSON.parse(localStorage.getItem('users')) || [];
     switch (type) {
@@ -127,14 +129,14 @@ function filterProduct() {
 //     productsNeedShow = result;
 //     showProductList(productsNeedShow);
 // }
-function showIndextPage() {
-    let idAdmin = JSON.parse(localStorage.getItem("idAdmin"));
-    localStorage.setItem("idUser", idAdmin);
-    window.location.href = "../index.html";
-}
+// function showIndextPage() {
+//     let idAdmin = JSON.parse(localStorage.getItem("idAdmin"));
+//     localStorage.setItem("idUser", idAdmin);
+//     window.location.href = "../index.html";
+// }
 function showUserList(users) {
-    document.getElementsByClassName('users')[0].classList.remove('d-none');
-    document.getElementsByClassName('products')[0].classList.add('d-none');
+    // document.getElementsByClassName('users')[0].classList.remove('d-none');
+    // document.getElementsByClassName('products')[0].classList.add('d-none');
     let text = '';
     for (let i = 0; i < users.length; i++) {
         let status = users[i].status == 1 ? 'Đang hoạt động' : 'Đang Khóa';

@@ -538,16 +538,16 @@ function pageListShow() {
     for (let i = 1; i <= totalPage; i++) {
         text +=
             `
-            <li class="page-item" onclick = showPage(${i})><a class="page-link" href="#">${i}</a></li>
+            <li class="page-item" onclick = showPage(${i})><a class="page-link" href="javascript: void(0)">${i}</a></li>
         `
     }
     pages.innerHTML =
         `
-        <a class="page-link" href="#" aria-label="Previous" onclick = prePage()>
+        <a class="page-link" href="javascript: void(0)" aria-label="Previous" onclick = prePage()>
         <span aria-hidden="true" >&laquo;</span>
       </a>
         ${text}
-        <a class="page-link" href="#" aria-label="Next"  onclick = nextPage()>
+        <a class="page-link" href="javascript: void(0)" aria-label="Next"  onclick = nextPage()>
         <span aria-hidden="true">&raquo;</span>
       </a>
     `;
