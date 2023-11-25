@@ -10827,4 +10827,7 @@ textarea.form-control-lg {
   .select_page{
     color: red;
   }
+  body {
+    overflow: hidden;
+}
 }

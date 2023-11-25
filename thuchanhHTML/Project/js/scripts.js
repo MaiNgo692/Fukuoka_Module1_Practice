@@ -12,11 +12,15 @@ $(document).ready(function () {
         $("#header").load("./page/header1.html",function(){
             showCartQuantity();
         });
+        
     } else {
         $("#header").load("./page/header.html");
         
     }
     $("#footer").load("./page/footer.html");
+    $("#silder").load("./page/silder.html",function(){
+        showSlides();
+    });
 })
 
 let products = [
@@ -307,7 +311,7 @@ let products = [
 ]
 
 // localStorage.setItem("products", JSON.stringify(products));
-localStorage.setItem("idAdmin", '9819107065');
+// localStorage.setItem("idAdmin", '9819107065');
 let totalItem = 3;
 let totalPage = Math.ceil(products.length / totalItem);
 let start;
@@ -340,7 +344,6 @@ window.onload = (function () {
     showProducts(productsNeedShow);
     pages = document.getElementsByClassName("pagination")[0];
     pageListShow();
-
 });
 function showProducts(products) {
     const VND = new Intl.NumberFormat('vi-VN', {
@@ -389,9 +392,61 @@ function sortProduct(type) {
     }
     let result;
     let products = JSON.parse(localStorage.getItem("products")) || [];
+    let text;
     if(type=='Trang chủ'){
         result = products;
+        text = `
+    <select class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"  name="filter-catagory" id="filter-catagory">
+        <option value="" selected>Lọc theo Catagory</option>
+        <option value="Bếp Ga">Bếp Ga</option>
+        <option value="Bếp Từ">Bếp Từ</option>
+        <option value="Máy Hút Mùi">Máy Hút Mùi</option>
+        <option value="Thiết Bị Nhà Bếp Khác">Thiết Bị Nhà Bếp Khác</option>
+    </select>        
+    <select class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"  name="filter-brand" id="filter-brand">
+        <option value="" selected>Lọc theo Brand</option>
+        <option value="Bosch">Bosch</option>
+        <option value="Kainer">Kainer</option>
+        <option value="Canzy">Canzy</option>
+        <option value="Canaval">Canaval</option>
+        <option value="Taka">Taka</option>
+        <option value="Eurosun">Eurosun</option>
+        <option value="Arber">Arber</option>
+    </select>
+    <select class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"  name="filter-price" id="filter-price">
+        <option value="" selected>Lọc theo Price</option>
+        <option value="3000000">0 &lt = 3M</option>
+        <option value="10000000">3M ~ 10M </option>
+        <option value="10000001">&gt 10M</option>
+    </select>
+    <button class="btn btn-primary col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" onclick="filterProduct()">Lọc</button>
+    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+    </form>`;
+        document.getElementById('product-action').innerHTML = text;
     }else{
+        text = `     
+    <select class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"  name="filter-brand" id="filter-brand">
+        <option value="" selected>Lọc theo Brand</option>
+        <option value="Bosch">Bosch</option>
+        <option value="Kainer">Kainer</option>
+        <option value="Canzy">Canzy</option>
+        <option value="Canaval">Canaval</option>
+        <option value="Taka">Taka</option>
+        <option value="Eurosun">Eurosun</option>
+        <option value="Arber">Arber</option>
+    </select>
+    <select class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"  name="filter-price" id="filter-price">
+        <option value="" selected>Lọc theo Price</option>
+        <option value="3000000">0 &lt = 3M</option>
+        <option value="10000000">3M ~ 10M </option>
+        <option value="10000001">&gt 10M</option>
+    </select>
+    <button class="btn btn-primary col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" onclick="filterProduct()">Lọc</button>
+    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+    </form>`;
+        document.getElementById('product-action').innerHTML = text;
         result = products.filter((item)=>{
             return item.catagory == type;
         });
@@ -401,6 +456,38 @@ function sortProduct(type) {
     pageListShow();
     showProducts(result);
 }
+function filterProduct() {
+    let catagory = document.getElementById("filter-catagory").value;
+    let brand = document.getElementById("filter-brand").value;
+    let price = document.getElementById("filter-price").value;
+    let products = JSON.parse(localStorage.getItem("products")) || [];
+    let result = products;
+    if(catagory){
+        result= result.filter(item => item.catagory == catagory);
+    }
+    if(brand){
+        result= result.filter(item => item.brand == brand);
+    }
+    if(price){
+        if (price == 10000001) {
+            result = result.filter((item) => {
+                return item.price >= price;
+            });
+        } else if (price == 3000000) {
+            result = result.filter((item) => {
+                return item.price <= price;
+            });
+        } else {
+            result = result.filter((item) => {
+                return item.price <= price && item.price >= 3000000;
+        });
+        }
+    }
+    // productsNeedShow = result;
+    getTotalPage(result);
+    pageListShow();
+    showProducts(result);
+}   
 function addToCart(idProduct) {
     let products = JSON.parse(localStorage.getItem("products")) || [];
     let users = JSON.parse(localStorage.getItem("users")) || [];
@@ -451,18 +538,18 @@ function pageListShow() {
     for (let i = 1; i <= totalPage; i++) {
         text +=
             `
-            <li class="page-item" onclick = showPage(${i})>${i}</li>
+            <li class="page-item" onclick = showPage(${i})><a class="page-link" href="#">${i}</a></li>
         `
     }
     pages.innerHTML =
         `
-        <span class="material-symbols-outlined" onclick = prePage()>
-        arrow_back_ios
-        </span>
-      ${text}
-      <span class="material-symbols-outlined" onclick = nextPage()>
-      arrow_forward_ios
-      </span>
+        <a class="page-link" href="#" aria-label="Previous" onclick = prePage()>
+        <span aria-hidden="true" >&laquo;</span>
+      </a>
+        ${text}
+        <a class="page-link" href="#" aria-label="Next"  onclick = nextPage()>
+        <span aria-hidden="true">&raquo;</span>
+      </a>
     `;
     document.getElementsByClassName("page-item")[0].classList.add("text-danger");
 

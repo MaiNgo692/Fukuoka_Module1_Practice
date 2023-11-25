@@ -6,7 +6,7 @@ function signIn() {
 
     for (let i = 0; i < users.length; i++) {
         if(users[i].email == email && users[i].password==password){
-            if(users[i].id == idAdmin){
+            if(users[i].role == 1){
                 window.location.href="./admin.html";
             }else{
                 localStorage.setItem("idUser",users[i].id);

@@ -13,7 +13,7 @@ function showToast(msg) {
         console.log(toastBox);
     // })
     let toast = document.createElement('div');
-    toast.classList.add('toast');
+    toast.classList.add('toast-show');
     toast.innerHTML= msg;
     toastBox.appendChild(toast);
     

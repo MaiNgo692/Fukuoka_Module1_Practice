@@ -64,22 +64,53 @@ function sortProductFun(type) {
     productsNeedShow = result;
     showProductList(productsNeedShow);
 }
-function filterProductByCatagory(type) {
-    let result = productsNeedShow.filter((item) => {
-        return item.catagory == type;
-    });
-    productsNeedShow = result;
-    showProductList(productsNeedShow);
-}
-function filterProductByBrand(type) {
-    let result = productsNeedShow.filter((item) => {
-        return item.brand == type;
-    });
-    productsNeedShow = result;
-    showProductList(productsNeedShow);
-}
-function filterProductByPrice(type) {
-    let result;
+function filterProduct() {
+    let catagory = document.getElementById("filter-catagory").value;
+    let brand = document.getElementById("filter-brand").value;
+    let price = document.getElementById("filter-price").value;
+    let products= JSON.parse(localStorage.getItem('products'));
+    let result = products;
+    if(catagory){
+        result= result.filter(item => item.catagory == catagory);
+    }
+    if(brand){
+        result= result.filter(item => item.brand == brand);
+    }
+    if(price){
+        if (price == 10000001) {
+            result = result.filter((item) => {
+                return item.price >= price;
+            });
+        } else if (price == 3000000) {
+            result = result.filter((item) => {
+                return item.price <= price;
+            });
+        } else {
+            result = result.filter((item) => {
+                return item.price <= price && item.price >= 3000000;
+        });
+        }
+    }
+    console.log(result);
+    showProductList(result);
+}   
+
+// function filterProductByCatagory(type) {
+//     let result = productsNeedShow.filter((item) => {
+//         return item.catagory == type;
+//     });
+//     productsNeedShow = result;
+//     showProductList(productsNeedShow);
+// }
+// function filterProductByBrand(type) {
+//     let result = productsNeedShow.filter((item) => {
+//         return item.brand == type;
+//     });
+//     productsNeedShow = result;
+//     showProductList(productsNeedShow);
+// }
+// function filterProductByPrice(type) {
+//     let result;
     if (type == 10000001) {
         result = productsNeedShow.filter((item) => {
             return item.price >= type;
@@ -93,9 +124,9 @@ function filterProductByPrice(type) {
         item.price <= type && item.price >= 3000000
         );
     }
-    productsNeedShow = result;
-    showProductList(productsNeedShow);
-}
+//     productsNeedShow = result;
+//     showProductList(productsNeedShow);
+// }
 function showIndextPage() {
     let idAdmin = JSON.parse(localStorage.getItem("idAdmin"));
     localStorage.setItem("idUser", idAdmin);
@@ -108,11 +139,13 @@ function showUserList(users) {
     for (let i = 0; i < users.length; i++) {
         let status = users[i].status == 1 ? 'Đang hoạt động' : 'Đang Khóa';
         let action = users[i].status == 1 ? 'Khóa' : 'Mở Khóa';
+        let role = users[i].role == 0 ? 'User' : 'Admin';
         text += `
                 <tr>
                 <th scope="row">${i + 1}</th>
                 <td>${users[i].name}</td>
                 <td>${users[i].email}</td>
+                <td>${role}</td>
                 <td>${status}</td>
                 <td><button onclick="changeStatus(${users[i].id})" class='btn text-primary'>${action}</button>
                     <button  data-bs-toggle="modal" data-bs-target="#modal-user" onclick="editUser(${users[i].id})" class='btn text-warning'>Sửa</button>
@@ -131,6 +164,7 @@ function addNewUser() {
     userName = document.getElementById("new-name");
     email = document.getElementById("new-email");
     password = document.getElementById("password");
+    role= document.getElementById("role");
     checkForm = true;
     validateRequired(userName);
     validateRequired(email);
@@ -138,7 +172,18 @@ function addNewUser() {
     validateRequired(password);
     checkPassword(password);
     if (checkForm) {
-        signUp();
+        let users = JSON.parse(localStorage.getItem("users"))||[];
+    let obj ={
+        name: userName.value,
+        email: email.value,
+        password: password.value,
+        id: uuId(),
+        status:1,
+        role: role.value,
+        cart:[],
+    }
+    users.push(obj);
+    localStorage.setItem("users",JSON.stringify(users));
         usersNeedShow = JSON.parse(localStorage.getItem('users')) || [];
         showUserList(usersNeedShow);
         userName.value = "";
@@ -221,19 +266,19 @@ function showProductList(products) {
     sortProduct.addEventListener("change", (event) => {
         sortProductFun(event.target.value);
     })
-    filterProductCatagory = document.getElementById('filter-catagory');
-    console.log("catagory", filterProductCatagory);
-    filterProductCatagory.addEventListener("change", (event) => {
-        filterProductByCatagory(event.target.value);
-    })
-    filterProductBrand = document.getElementById('filter-brand');
-    filterProductBrand.addEventListener("change", (event) => {
-        filterProductByBrand(event.target.value);
-    })
-    filterProductPrice = document.getElementById('filter-price');
-    filterProductPrice.addEventListener("change", (event) => {
-        filterProductByPrice(event.target.value);
-    })
+    // filterProductCatagory = document.getElementById('filter-catagory');
+    // console.log("catagory", filterProductCatagory);
+    // filterProductCatagory.addEventListener("change", (event) => {
+    //     filterProductByCatagory(event.target.value);
+    // })
+    // filterProductBrand = document.getElementById('filter-brand');
+    // filterProductBrand.addEventListener("change", (event) => {
+    //     filterProductByBrand(event.target.value);
+    // })
+    // filterProductPrice = document.getElementById('filter-price');
+    // filterProductPrice.addEventListener("change", (event) => {
+    //     filterProductByPrice(event.target.value);
+    // })
 }
 function changeStatusProduct(idProduct) {
     productsNeedShow[idProduct].status = productsNeedShow[idProduct].status == 0 ? 1 : 0;
@@ -276,6 +321,7 @@ function changeStatus(idUser) {
     user[0].status = user[0].status == 1 ? '0' : '1';
     localStorage.setItem('users', JSON.stringify(usersNeedShow));
     showUserList(usersNeedShow);
+    showToast(successEditUserMsg);
 }
 function deleteUser(idUser) {
     if (confirm('Bạn có chắc muốn xóa người dùng này?')) {

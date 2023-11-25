@@ -83,6 +83,7 @@ function checkPassword(password) {
         password: password.value,
         id: uuId(),
         status:1,
+        role:0,
         cart:[],
     }
     users.push(obj);
