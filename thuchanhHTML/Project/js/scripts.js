@@ -14,7 +14,9 @@ $(document).ready(function () {
         });
     } else {
         $("#header").load("./page/header.html");
+        
     }
+    $("#footer").load("./page/footer.html");
 })
 
 let products = [

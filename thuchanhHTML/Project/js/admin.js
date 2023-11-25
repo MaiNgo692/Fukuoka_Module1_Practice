@@ -148,6 +148,45 @@ function addNewUser() {
         showToast(InvalidMsg);
     }
 }
+function addNewProduct() {
+    let products = JSON.parse(localStorage.getItem('products')) || [];
+    let nameProduct = document.getElementById('new-product-name');
+    let imgProduct = document.getElementById('new-product-img');
+    let catagoryProduct = document.getElementById('new-catagory');
+    let brandProduct = document.getElementById('new-catagory');
+    let priceProduct = document.getElementById('new-price');
+    let quantityProduct = document.getElementById('new-quantity');
+    checkForm = true;
+    validateRequired(nameProduct.value);
+    validateRequired(imgProduct.src);
+    validateRequired(catagoryProduct.value);
+    validateRequired(brandProduct.value);
+    validateRequired(priceProduct.value);
+    validateRequired(quantityProduct.value);
+    let checkExistName = products.filter(item => item.name == nameProduct)
+    if(checkForm && checkExistName.length ==0){
+        let newProduct={
+            name: nameProduct.value,
+            catagory: catagoryProduct.value,
+            img: imgProduct.src,
+            price: priceProduct.value,
+            quantity: quantityProduct.value,
+            status: 0,
+            brand: brandProduct.value,
+        }
+        nameProduct.value = "";
+        imgProduct.src ="";
+        catagoryProduct.value = "";
+        brandProduct.value = "";
+        priceProduct.value = "";
+        quantityProduct.value = "";
+        document.getElementById('new-img').value="";
+        products.push(newProduct);
+        localStorage.setItem("products",JSON.stringify(products));
+        showProductList(products);
+    }
+    
+}
 function showProductList(products) {
     document.getElementsByClassName('products')[0].classList.remove('d-none');
     document.getElementsByClassName('users')[0].classList.add('d-none');
@@ -264,7 +303,6 @@ function editUser(idUser) {
 
 }
 function saveUser(idUser) {
-    // let users = JSON.parse(localStorage.getItem('users')) || [];
     let name = document.getElementById('name');
     let email = document.getElementById('email');
     for (let i = 0; i < usersNeedShow.length; i++) {
@@ -278,9 +316,9 @@ function saveUser(idUser) {
     showToast(successEditUserMsg);
     showUserList(usersNeedShow);
 }
-function previewFile() {
-    var preview = document.getElementById('product-img');
-    var file    = document.querySelector('input[type=file]').files[0];
+function previewFile(img,id) {
+    var preview = document.getElementById(`${img}`);
+    var file    = document.querySelector(`input[id=${id}]`).files[0];
     var reader  = new FileReader();
     reader.onloadend = function () {
       preview.src = reader.result;

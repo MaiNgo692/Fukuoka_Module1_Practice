@@ -101,7 +101,7 @@ function checkPassword(password) {
         if (lables[i].htmlFor == elId) {
             if (inputValue == "") {
                 checkForm = false;
-                document.getElementById(`alert-${elId}`).innerHTML = `「${lables[i].textContent}」là trường bắt buộc!`;
+                document.getElementById(`alert-${elId}`).innerHTML = `${lables[i].textContent} là trường bắt buộc!`;
                 document.getElementById(`alert-${elId}`).classList.remove("none-display");
             } else {
                 document.getElementById(`alert-${elId}`).classList.add("none-display");
