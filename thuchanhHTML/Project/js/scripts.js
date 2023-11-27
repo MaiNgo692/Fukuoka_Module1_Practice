@@ -424,7 +424,7 @@ function sortProduct(type) {
     </select>
     <button class="btn btn-primary col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" onclick="filterProduct(0)">Lọc</button>
     <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+        <input type="search" class="form-control" placeholder="Search..." aria-label="Search" oninput="searchProduct()" id="search">
     </form>`;
         document.getElementById('product-action').innerHTML = text;
     }else{
@@ -447,7 +447,7 @@ function sortProduct(type) {
     </select>
     <button class="btn btn-primary col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" onclick="filterProduct(1)">Lọc</button>
     <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+        <input type="search" class="form-control" placeholder="Search..." aria-label="Search" oninput="searchProduct()" id="search">
     </form>`;
         document.getElementById('product-action').innerHTML = text;
         result = products.filter((item)=>{
@@ -504,8 +504,9 @@ function filterProduct(select) {
         });
         }
     }
-    // productsNeedShow = result;
+    
     if(result.length !=0){
+        productsNeedShow = result;
         getTotalPage(result);
         pageListShow();
         showProducts(result);
@@ -516,8 +517,26 @@ function filterProduct(select) {
         showProduct.innerHTML= "";
         showProduct.appendChild(text);
     }
-
 }   
+function searchProduct() {
+    let searchInput = document.getElementById("search").value;
+    console.log(searchInput);
+    let result = productsNeedShow.filter(item=>{
+        return item.name.toUpperCase().includes(searchInput.toUpperCase())
+    });
+    if(result.length !=0){
+        productsNeedShow = result;
+        getTotalPage(result);
+        pageListShow();
+        showProducts(result);
+    }else{
+        let text = document.createElement('p');
+        text.classList.add('text-warning');
+        text.innerHTML= "Không thấy sản phẩm nào!";
+        showProduct.innerHTML= "";
+        showProduct.appendChild(text);
+    }
+}
 function addToCart(idProduct) {
     let products = JSON.parse(localStorage.getItem("products")) || [];
     let users = JSON.parse(localStorage.getItem("users")) || [];
