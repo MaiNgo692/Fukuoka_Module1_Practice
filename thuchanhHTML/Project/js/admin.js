@@ -72,15 +72,15 @@ function filterProduct() {
     let catagory = document.getElementById("filter-catagory").value;
     let brand = document.getElementById("filter-brand").value;
     let price = document.getElementById("filter-price").value;
-    let products= JSON.parse(localStorage.getItem('products'));
+    let products = JSON.parse(localStorage.getItem('products'));
     let result = products;
-    if(catagory){
-        result= result.filter(item => item.catagory == catagory);
+    if (catagory) {
+        result = result.filter(item => item.catagory == catagory);
     }
-    if(brand){
-        result= result.filter(item => item.brand == brand);
+    if (brand) {
+        result = result.filter(item => item.brand == brand);
     }
-    if(price){
+    if (price) {
         if (price == 10000001) {
             result = result.filter((item) => {
                 return item.price >= price;
@@ -92,12 +92,12 @@ function filterProduct() {
         } else {
             result = result.filter((item) => {
                 return item.price <= price && item.price >= 3000000;
-        });
+            });
         }
     }
     console.log(result);
     showProductList(result);
-}   
+}
 
 // function filterProductByCatagory(type) {
 //     let result = productsNeedShow.filter((item) => {
@@ -115,19 +115,19 @@ function filterProduct() {
 // }
 // function filterProductByPrice(type) {
 //     let result;
-    // if (type == 10000001) {
-    //     result = productsNeedShow.filter((item) => {
-    //         return item.price >= type;
-    //     });
-    // } else if (type == 3000000) {
-    //     result = productsNeedShow.filter((item) => {
-    //         return item.price <= type;
-    //     });
-    // } else {
-    //     result = productsNeedShow.filter(item => 
-    //     item.price <= type && item.price >= 3000000
-    //     );
-    // }
+// if (type == 10000001) {
+//     result = productsNeedShow.filter((item) => {
+//         return item.price >= type;
+//     });
+// } else if (type == 3000000) {
+//     result = productsNeedShow.filter((item) => {
+//         return item.price <= type;
+//     });
+// } else {
+//     result = productsNeedShow.filter(item => 
+//     item.price <= type && item.price >= 3000000
+//     );
+// }
 //     productsNeedShow = result;
 //     showProductList(productsNeedShow);
 // }
@@ -140,10 +140,10 @@ function showUserList(users) {
     document.getElementsByClassName('users')[0].classList.remove('d-none');
     document.getElementsByClassName('products')[0].classList.add('d-none');
     let navList = document.getElementsByClassName('nav-link');
-        navList[0].classList.add('link-secondary');
-        navList[0].classList.remove('link-dark');
-        navList[1].classList.add('link-dark');
-        navList[1].classList.remove('link-secondary');
+    navList[0].classList.add('link-secondary');
+    navList[0].classList.remove('link-dark');
+    navList[1].classList.add('link-dark');
+    navList[1].classList.remove('link-secondary');
 
     let text = '';
     for (let i = 0; i < users.length; i++) {
@@ -175,7 +175,7 @@ function addNewUser() {
     userName = document.getElementById("new-name");
     email = document.getElementById("new-email");
     password = document.getElementById("password");
-    role= document.getElementById("role");
+    role = document.getElementById("role");
     checkForm = true;
     validateRequired(userName);
     validateRequired(email);
@@ -183,18 +183,18 @@ function addNewUser() {
     validateRequired(password);
     checkPassword(password);
     if (checkForm) {
-        let users = JSON.parse(localStorage.getItem("users"))||[];
-    let obj ={
-        name: userName.value,
-        email: email.value,
-        password: password.value,
-        id: uuId(),
-        status:1,
-        role: role.value,
-        cart:[],
-    }
-    users.push(obj);
-    localStorage.setItem("users",JSON.stringify(users));
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+        let obj = {
+            name: userName.value,
+            email: email.value,
+            password: password.value,
+            id: uuId(),
+            status: 1,
+            role: role.value,
+            cart: [],
+        }
+        users.push(obj);
+        localStorage.setItem("users", JSON.stringify(users));
         usersNeedShow = JSON.parse(localStorage.getItem('users')) || [];
         userName.value = "";
         email.value = "";
@@ -225,8 +225,8 @@ function addNewProduct() {
     validateRequired(priceProduct.value);
     validateRequired(quantityProduct.value);
     let checkExistName = products.filter(item => item.name == nameProduct)
-    if(checkForm && checkExistName.length ==0){
-        let newProduct={
+    if (checkForm && checkExistName.length == 0) {
+        let newProduct = {
             name: nameProduct.value,
             catagory: catagoryProduct.value,
             img: imgProduct.src,
@@ -236,14 +236,14 @@ function addNewProduct() {
             brand: brandProduct.value,
         }
         nameProduct.value = "";
-        imgProduct.src ="";
+        imgProduct.src = "";
         catagoryProduct.value = "";
         brandProduct.value = "";
         priceProduct.value = "";
         quantityProduct.value = "";
-        document.getElementById('new-img').value="";
+        document.getElementById('new-img').value = "";
         products.push(newProduct);
-        localStorage.setItem("products",JSON.stringify(products));
+        localStorage.setItem("products", JSON.stringify(products));
         myModal.classList.remove("show");
         let backdrop = document.getElementsByClassName("modal-backdrop");
         backdrop[0].remove();
@@ -290,19 +290,7 @@ function showProductList(products) {
     sortProduct.addEventListener("change", (event) => {
         sortProductFun(event.target.value);
     })
-    // filterProductCatagory = document.getElementById('filter-catagory');
-    // console.log("catagory", filterProductCatagory);
-    // filterProductCatagory.addEventListener("change", (event) => {
-    //     filterProductByCatagory(event.target.value);
-    // })
-    // filterProductBrand = document.getElementById('filter-brand');
-    // filterProductBrand.addEventListener("change", (event) => {
-    //     filterProductByBrand(event.target.value);
-    // })
-    // filterProductPrice = document.getElementById('filter-price');
-    // filterProductPrice.addEventListener("change", (event) => {
-    //     filterProductByPrice(event.target.value);
-    // })
+
 }
 function changeStatusProduct(idProduct) {
     productsNeedShow[idProduct].status = productsNeedShow[idProduct].status == 0 ? 1 : 0;
@@ -318,6 +306,54 @@ function editProduct(idProduct) {
     document.getElementById('price').value = productsNeedShow[idProduct].price;
     document.getElementById('quantity').value = productsNeedShow[idProduct].quantity;
     editProductId = idProduct;
+}
+let checkEnterTime = 0;
+setTimeout(function name(params) {
+    checkEnterTime = 1;
+}, 3000);
+function search(select) {
+    checkEnterTime = 0;
+    if (checkEnterTime) {
+        if (select) {
+            searchProduct();
+        }
+        else {
+            searchUser();
+        }
+    }
+}
+function searchProduct() {
+    console.log("search");
+
+    let searchInput = document.getElementById("search-product").value;
+    let result = productsNeedShow.filter(item => {
+        return item.name.toUpperCase().includes(searchInput.toUpperCase());
+    })
+    if (result.length != 0) {
+        showProductList(result);
+    } else {
+        let text = document.createElement('p');
+        text.classList.add('text-warning');
+        text.innerHTML = "Không thấy sản phẩm nào!";
+        document.getElementById('product-list').innerHTML = "";
+        document.getElementById('product-list').appendChild(text);
+    }
+}
+function searchUser() {
+    console.log("search");
+    let searchInput = document.getElementById("search-user").value;
+    let result = usersNeedShow.filter(item => {
+        return item.name.toUpperCase().includes(searchInput.toUpperCase());
+    })
+    if (result.length != 0) {
+        showUserList(result);
+    } else {
+        let text = document.createElement('p');
+        text.classList.add('text-warning');
+        text.innerHTML = "Không thấy người dùng nào!";
+        document.getElementById('user-list').innerHTML = "";
+        document.getElementById('user-list').appendChild(text);
+    }
 }
 function saveProduct(idProduct) {
     productsNeedShow[idProduct].name = document.getElementById('product-name').value;
@@ -342,7 +378,6 @@ function deleteProduct(idProduct) {
         showToast(successDeleteProductMsg);
     }
 }
-
 function changeStatus(idUser) {
     let user = usersNeedShow.filter((item) => {
         return item.id == idUser;
@@ -397,17 +432,17 @@ function saveUser(idUser) {
     showUserList(usersNeedShow);
     showToast(successEditUserMsg);
 }
-function previewFile(img,id) {
+function previewFile(img, id) {
     var preview = document.getElementById(`${img}`);
-    var file    = document.querySelector(`input[id=${id}]`).files[0];
-    var reader  = new FileReader();
+    var file = document.querySelector(`input[id=${id}]`).files[0];
+    var reader = new FileReader();
     reader.onloadend = function () {
-      preview.src = reader.result;
+        preview.src = reader.result;
     }
-  
+
     if (file) {
-      reader.readAsDataURL(file);
+        reader.readAsDataURL(file);
     } else {
-      preview.src = "";
+        preview.src = "";
     }
-  }
+}

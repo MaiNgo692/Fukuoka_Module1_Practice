@@ -50,7 +50,7 @@
                     <option value="email">Sắp xếp theo email</option>
                 </select>
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search" id="search-user" oninput="searchUser()">
                 </form>
             </div>
             <table class="table table-striped bg-light rounded">
@@ -76,7 +76,7 @@
                 <div class="add-and-search mx-auto">
                     <button  data-bs-toggle="modal" data-bs-target="#modal-new-product" class="btn btn-primary col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" >Thêm sản phẩm mới</button>
                     <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                        <input type="search" class="form-control" placeholder="Search..." aria-label="Search" id="search-product" oninput="searchProduct()">
                     </form>
                 </div>
                 <div class="filter-and-sort row">
