@@ -22,53 +22,11 @@ $(document).ready(function () {
         showSlides();
     });
 })
-
+let catagorys = ["Máy Hút Mùi","Bếp Từ","Bếp Ga","Thiết Bị Nhà Bếp Khác"];
+localStorage.setItem("catagorys",JSON.stringify(catagorys));
+let brands =["Kainer","Canzy","Bosch","Canaval","Taka","Eurosun","Arber"];
+localStorage.setItem("brands",JSON.stringify(brands));
 let products = [
-    {
-        name: "Bếp Từ Đôi Bosch PPI8256MS",
-        catagory: "Bếp Từ",
-        img: "https://static.bepantoan.vn/userfiles/images/82560.jpeg",
-        price: 9980000,
-        quantity: 50,
-        status: 0,
-        brand: "Bosch",
-    },
-    {
-        name: "Bếp Từ Đôi Kainer KA-828EU",
-        catagory: "Bếp Từ",
-        img: "https://static.bepantoan.vn/userfiles/images/828-EU%202.jpg",
-        price: 16800000,
-        quantity: 50,
-        status: 0,
-        brand: "Kainer",
-    },
-    {
-        name: "Bếp Từ Đôi Kainer KA-6262EU",
-        catagory: "Bếp Từ",
-        img: "https://static.bepantoan.vn/userfiles/images/ka.jpg",
-        price: 16500000,
-        quantity: 50,
-        status: 0,
-        brand: "Kainer",
-    },
-    {
-        name: "Bếp Từ Đôi Kainer KA-888EU",
-        catagory: "Bếp Từ",
-        img: "https://static.bepantoan.vn/userfiles/images/888-EU%202.jpg",
-        price: 13800000,
-        quantity: 50,
-        status: 0,
-        brand: "Kainer",
-    },
-    {
-        name: "Bếp Từ Đức Bosch PUC631BB2E",
-        catagory: "Bếp Từ",
-        img: "https://static.bepantoan.vn/userfiles/images/product/large_bep-tu-bosch-puc631bb2ex500x500x4.jpg",
-        price: 10400000,
-        quantity: 50,
-        status: 0,
-        brand: "Bosch",
-    },
     {
         name: "Máy Hút Mùi Kính Cong Kainer KA-270C",
         catagory: "Máy Hút Mùi",
@@ -142,6 +100,52 @@ let products = [
         brand: "Canzy",
 
     },
+    {
+        name: "Bếp Từ Đôi Bosch PPI8256MS",
+        catagory: "Bếp Từ",
+        img: "https://static.bepantoan.vn/userfiles/images/82560.jpeg",
+        price: 9980000,
+        quantity: 50,
+        status: 0,
+        brand: "Bosch",
+    },
+    {
+        name: "Bếp Từ Đôi Kainer KA-828EU",
+        catagory: "Bếp Từ",
+        img: "https://static.bepantoan.vn/userfiles/images/828-EU%202.jpg",
+        price: 16800000,
+        quantity: 50,
+        status: 0,
+        brand: "Kainer",
+    },
+    {
+        name: "Bếp Từ Đôi Kainer KA-6262EU",
+        catagory: "Bếp Từ",
+        img: "https://static.bepantoan.vn/userfiles/images/ka.jpg",
+        price: 16500000,
+        quantity: 50,
+        status: 0,
+        brand: "Kainer",
+    },
+    {
+        name: "Bếp Từ Đôi Kainer KA-888EU",
+        catagory: "Bếp Từ",
+        img: "https://static.bepantoan.vn/userfiles/images/888-EU%202.jpg",
+        price: 13800000,
+        quantity: 50,
+        status: 0,
+        brand: "Kainer",
+    },
+    {
+        name: "Bếp Từ Đức Bosch PUC631BB2E",
+        catagory: "Bếp Từ",
+        img: "https://static.bepantoan.vn/userfiles/images/product/large_bep-tu-bosch-puc631bb2ex500x500x4.jpg",
+        price: 10400000,
+        quantity: 50,
+        status: 0,
+        brand: "Bosch",
+    },
+    
     {
         name: "Bếp Ga Âm Canzy CZ-862",
         catagory: "Bếp Ga",
@@ -310,9 +314,9 @@ let products = [
     },
 ]
 
-// localStorage.setItem("products", JSON.stringify(products));
+localStorage.setItem("products", JSON.stringify(products));
 // localStorage.setItem("idAdmin", '9819107065');
-let totalItem = 3;
+let totalItem = 9;
 let totalPage = Math.ceil(products.length / totalItem);
 let start;
 let end;
@@ -326,7 +330,6 @@ startEnd(1);
 function getTotalPage(params) {
     totalPage = Math.ceil(params.length / totalItem);
 }
-
 
 function viewLogInPage() {
     localStorage.removeItem('idUser');
@@ -354,7 +357,7 @@ function showProducts(products) {
     for (let i = 0; i < products.length; i++) {
         if (i >= start && i < end) {
             text += `
-        <div class="col  mb-5 shadow p-3 bg-body rounded">
+        <div class="col  mb-5 shadow p-3 bg-body mx-1 rounded">
                     <div class="card h-100">
                         <!-- Product image-->
                         <img class="card-img h-50" src="${products[i].img}" alt="..." />
@@ -396,14 +399,14 @@ function sortProduct(type) {
     if(type=='Trang chủ'){
         result = products;
         text = `
-    <select class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"  name="filter-catagory" id="filter-catagory">
+    <select class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 rounded"  name="filter-catagory" id="filter-catagory">
         <option value="" selected>Lọc theo Catagory</option>
         <option value="Bếp Ga">Bếp Ga</option>
         <option value="Bếp Từ">Bếp Từ</option>
         <option value="Máy Hút Mùi">Máy Hút Mùi</option>
         <option value="Thiết Bị Nhà Bếp Khác">Thiết Bị Nhà Bếp Khác</option>
     </select>        
-    <select class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"  name="filter-brand" id="filter-brand">
+    <select class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 rounded"  name="filter-brand" id="filter-brand">
         <option value="" selected>Lọc theo Brand</option>
         <option value="Bosch">Bosch</option>
         <option value="Kainer">Kainer</option>
@@ -413,20 +416,20 @@ function sortProduct(type) {
         <option value="Eurosun">Eurosun</option>
         <option value="Arber">Arber</option>
     </select>
-    <select class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"  name="filter-price" id="filter-price">
+    <select class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 rounded"  name="filter-price" id="filter-price">
         <option value="" selected>Lọc theo Price</option>
         <option value="3000000">0 &lt = 3M</option>
         <option value="10000000">3M ~ 10M </option>
         <option value="10000001">&gt 10M</option>
     </select>
-    <button class="btn btn-primary col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" onclick="filterProduct()">Lọc</button>
+    <button class="btn btn-primary col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" onclick="filterProduct(0)">Lọc</button>
     <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
         <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
     </form>`;
         document.getElementById('product-action').innerHTML = text;
     }else{
         text = `     
-    <select class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"  name="filter-brand" id="filter-brand">
+    <select class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 rounded"  name="filter-brand" id="filter-brand">
         <option value="" selected>Lọc theo Brand</option>
         <option value="Bosch">Bosch</option>
         <option value="Kainer">Kainer</option>
@@ -436,13 +439,13 @@ function sortProduct(type) {
         <option value="Eurosun">Eurosun</option>
         <option value="Arber">Arber</option>
     </select>
-    <select class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"  name="filter-price" id="filter-price">
+    <select class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 rounded"  name="filter-price" id="filter-price">
         <option value="" selected>Lọc theo Price</option>
         <option value="3000000">0 &lt = 3M</option>
         <option value="10000000">3M ~ 10M </option>
         <option value="10000001">&gt 10M</option>
     </select>
-    <button class="btn btn-primary col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" onclick="filterProduct()">Lọc</button>
+    <button class="btn btn-primary col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" onclick="filterProduct(1)">Lọc</button>
     <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
         <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
     </form>`;
@@ -451,17 +454,35 @@ function sortProduct(type) {
             return item.catagory == type;
         });
     }   
-    productsNeedShow = result
-    getTotalPage(result);
-    pageListShow();
-    showProducts(result);
+    if(result.length !=0){
+        productsNeedShow = result;
+        getTotalPage(result);
+        pageListShow();
+        showProducts(result);
+    }else{
+        let text = document.createElement('p');
+        text.classList.add('text-warning');
+        text.innerHTML= "Không thấy sản phẩm nào!";
+        showProduct.innerHTML= "";
+        showProduct.appendChild(text);
+    }
+    // productsNeedShow = result;
+    // getTotalPage(result);
+    // pageListShow();
+    // showProducts(result);
 }
-function filterProduct() {
-    let catagory = document.getElementById("filter-catagory").value;
+function filterProduct(select) {
+    let catagory;
     let brand = document.getElementById("filter-brand").value;
     let price = document.getElementById("filter-price").value;
     let products = JSON.parse(localStorage.getItem("products")) || [];
-    let result = products;
+    let result;
+    if(select){
+        result= productsNeedShow;
+    }else{
+        catagory= document.getElementById("filter-catagory").value;
+        result= products;
+    }
     if(catagory){
         result= result.filter(item => item.catagory == catagory);
     }
@@ -484,9 +505,18 @@ function filterProduct() {
         }
     }
     // productsNeedShow = result;
-    getTotalPage(result);
-    pageListShow();
-    showProducts(result);
+    if(result.length !=0){
+        getTotalPage(result);
+        pageListShow();
+        showProducts(result);
+    }else{
+        let text = document.createElement('p');
+        text.classList.add('text-warning');
+        text.innerHTML= "Không thấy sản phẩm nào!";
+        showProduct.innerHTML= "";
+        showProduct.appendChild(text);
+    }
+
 }   
 function addToCart(idProduct) {
     let products = JSON.parse(localStorage.getItem("products")) || [];
@@ -538,16 +568,16 @@ function pageListShow() {
     for (let i = 1; i <= totalPage; i++) {
         text +=
             `
-            <li class="page-item" onclick = showPage(${i})><a class="page-link" href="javascript: void(0)">${i}</a></li>
+            <li class="page-item " onclick = showPage(${i})><a class="page-link " href="javascript: void(0)">${i}</a></li>
         `
     }
     pages.innerHTML =
         `
-        <a class="page-link" href="javascript: void(0)" aria-label="Previous" onclick = prePage()>
+        <a class="page-link rounded-start" href="javascript: void(0)" aria-label="Previous" onclick = prePage()>
         <span aria-hidden="true" >&laquo;</span>
       </a>
         ${text}
-        <a class="page-link" href="javascript: void(0)" aria-label="Next"  onclick = nextPage()>
+        <a class="page-link rounded-end" href="javascript: void(0)" aria-label="Next"  onclick = nextPage()>
         <span aria-hidden="true">&raquo;</span>
       </a>
     `;

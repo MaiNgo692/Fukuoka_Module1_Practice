@@ -9,7 +9,9 @@ let users = JSON.parse(localStorage.getItem('users')) || [];
 let products = JSON.parse(localStorage.getItem('products')) || [];
 let productsNeedShow = products;
 let usersNeedShow = users;
-showUserList(users);
+$(document).ready(function () {
+    showUserList(users);
+})
 
 function sortUserFun(type) {
     let users = JSON.parse(localStorage.getItem('users')) || [];
@@ -113,19 +115,19 @@ function filterProduct() {
 // }
 // function filterProductByPrice(type) {
 //     let result;
-    if (type == 10000001) {
-        result = productsNeedShow.filter((item) => {
-            return item.price >= type;
-        });
-    } else if (type == 3000000) {
-        result = productsNeedShow.filter((item) => {
-            return item.price <= type;
-        });
-    } else {
-        result = productsNeedShow.filter(item => 
-        item.price <= type && item.price >= 3000000
-        );
-    }
+    // if (type == 10000001) {
+    //     result = productsNeedShow.filter((item) => {
+    //         return item.price >= type;
+    //     });
+    // } else if (type == 3000000) {
+    //     result = productsNeedShow.filter((item) => {
+    //         return item.price <= type;
+    //     });
+    // } else {
+    //     result = productsNeedShow.filter(item => 
+    //     item.price <= type && item.price >= 3000000
+    //     );
+    // }
 //     productsNeedShow = result;
 //     showProductList(productsNeedShow);
 // }
@@ -135,8 +137,14 @@ function filterProduct() {
 //     window.location.href = "../index.html";
 // }
 function showUserList(users) {
-    // document.getElementsByClassName('users')[0].classList.remove('d-none');
-    // document.getElementsByClassName('products')[0].classList.add('d-none');
+    document.getElementsByClassName('users')[0].classList.remove('d-none');
+    document.getElementsByClassName('products')[0].classList.add('d-none');
+    let navList = document.getElementsByClassName('nav-link');
+        navList[0].classList.add('link-secondary');
+        navList[0].classList.remove('link-dark');
+        navList[1].classList.add('link-dark');
+        navList[1].classList.remove('link-secondary');
+
     let text = '';
     for (let i = 0; i < users.length; i++) {
         let status = users[i].status == 1 ? 'Đang hoạt động' : 'Đang Khóa';
@@ -163,6 +171,7 @@ function showUserList(users) {
     })
 }
 function addNewUser() {
+    let myModal = document.getElementById('modal-addUser');
     userName = document.getElementById("new-name");
     email = document.getElementById("new-email");
     password = document.getElementById("password");
@@ -187,10 +196,14 @@ function addNewUser() {
     users.push(obj);
     localStorage.setItem("users",JSON.stringify(users));
         usersNeedShow = JSON.parse(localStorage.getItem('users')) || [];
-        showUserList(usersNeedShow);
         userName.value = "";
         email.value = "";
         password.value = "";
+        myModal.classList.remove("show");
+        let backdrop = document.getElementsByClassName("modal-backdrop");
+        backdrop[0].remove();
+        showUserList(usersNeedShow);
+        showToast(successAddUserMsg);
     } else {
         showToast(InvalidMsg);
     }
@@ -200,9 +213,10 @@ function addNewProduct() {
     let nameProduct = document.getElementById('new-product-name');
     let imgProduct = document.getElementById('new-product-img');
     let catagoryProduct = document.getElementById('new-catagory');
-    let brandProduct = document.getElementById('new-catagory');
+    let brandProduct = document.getElementById('new-brand');
     let priceProduct = document.getElementById('new-price');
     let quantityProduct = document.getElementById('new-quantity');
+    let myModal = document.getElementById('modal-new-product');
     checkForm = true;
     validateRequired(nameProduct.value);
     validateRequired(imgProduct.src);
@@ -230,13 +244,21 @@ function addNewProduct() {
         document.getElementById('new-img').value="";
         products.push(newProduct);
         localStorage.setItem("products",JSON.stringify(products));
+        myModal.classList.remove("show");
+        let backdrop = document.getElementsByClassName("modal-backdrop");
+        backdrop[0].remove();
         showProductList(products);
+        showToast(successAddProductMsg);
     }
-    
 }
 function showProductList(products) {
     document.getElementsByClassName('products')[0].classList.remove('d-none');
     document.getElementsByClassName('users')[0].classList.add('d-none');
+    let navList = document.getElementsByClassName('nav-link');
+    navList[1].classList.add('link-secondary');
+    navList[1].classList.remove('link-dark');
+    navList[0].classList.add('link-dark');
+    navList[0].classList.remove('link-secondary');
     let text = '';
     const VND = new Intl.NumberFormat('vi-VN', {
         style: 'currency',
@@ -286,6 +308,7 @@ function changeStatusProduct(idProduct) {
     productsNeedShow[idProduct].status = productsNeedShow[idProduct].status == 0 ? 1 : 0;
     localStorage.setItem('products', JSON.stringify(productsNeedShow));
     showProductList(productsNeedShow);
+    showToast(successUpdateStatusProductMsg);
 }
 function editProduct(idProduct) {
     document.getElementById('product-name').value = productsNeedShow[idProduct].name;
@@ -303,15 +326,20 @@ function saveProduct(idProduct) {
     productsNeedShow[idProduct].brand = document.getElementById('brand').value;
     productsNeedShow[idProduct].price = document.getElementById('price').value;
     productsNeedShow[idProduct].quantity = document.getElementById('quantity').value;
+    let myModal = document.getElementById('modal-product');
     localStorage.setItem('products', JSON.stringify(productsNeedShow));
-    showToast(successEditProductMsg);
+    myModal.classList.remove("show");
+    let backdrop = document.getElementsByClassName("modal-backdrop");
+    backdrop[0].remove();
     showProductList(productsNeedShow);
+    showToast(successEditProductMsg);
 }
 function deleteProduct(idProduct) {
     if (confirm('Bạn chắc chắn muốn xóa sản phẩm này?')) {
         productsNeedShow.splice(idProduct, 1)
         localStorage.setItem('products', JSON.stringify(productsNeedShow));
         showProductList(productsNeedShow);
+        showToast(successDeleteProductMsg);
     }
 }
 
@@ -323,7 +351,7 @@ function changeStatus(idUser) {
     user[0].status = user[0].status == 1 ? '0' : '1';
     localStorage.setItem('users', JSON.stringify(usersNeedShow));
     showUserList(usersNeedShow);
-    showToast(successEditUserMsg);
+    showToast(successUpdateStatusUserMsg);
 }
 function deleteUser(idUser) {
     if (confirm('Bạn có chắc muốn xóa người dùng này?')) {
@@ -335,6 +363,7 @@ function deleteUser(idUser) {
         }
         localStorage.setItem('users', JSON.stringify(usersNeedShow));
         showUserList(usersNeedShow);
+        showToast(successDeleteUserMsg);
     }
 }
 function editUser(idUser) {
@@ -360,9 +389,13 @@ function saveUser(idUser) {
             break;
         }
     }
+    let myModal = document.getElementById('modal-user');
     localStorage.setItem('users', JSON.stringify(usersNeedShow));
-    showToast(successEditUserMsg);
+    myModal.classList.remove("show");
+    let backdrop = document.getElementsByClassName("modal-backdrop");
+    backdrop[0].remove();
     showUserList(usersNeedShow);
+    showToast(successEditUserMsg);
 }
 function previewFile(img,id) {
     var preview = document.getElementById(`${img}`);

@@ -18,3 +18,8 @@ td img{
 #product-img ,#new-product-img{
     width: 100px;
 }
+.add-and-search , .filter-and-sort{
+    display: flex;
+    justify-content:space-between;
+    margin: 10px;
+}

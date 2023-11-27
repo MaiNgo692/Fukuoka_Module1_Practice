@@ -8,6 +8,7 @@ function signIn() {
         if(users[i].email == email && users[i].password==password){
             if(users[i].role == 1){
                 window.location.href="./admin.html";
+                localStorage.setItem("idUser",users[i].id);
             }else{
                 localStorage.setItem("idUser",users[i].id);
                 window.location.href="../index.html";
