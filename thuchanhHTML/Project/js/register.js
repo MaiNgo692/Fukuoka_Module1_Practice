@@ -85,6 +85,7 @@ function checkPassword(password) {
         status:1,
         role:0,
         cart:[],
+        histoty:[],
     }
     users.push(obj);
     localStorage.setItem("users",JSON.stringify(users));

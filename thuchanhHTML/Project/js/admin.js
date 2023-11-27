@@ -99,43 +99,7 @@ function filterProduct() {
     showProductList(result);
 }
 
-// function filterProductByCatagory(type) {
-//     let result = productsNeedShow.filter((item) => {
-//         return item.catagory == type;
-//     });
-//     productsNeedShow = result;
-//     showProductList(productsNeedShow);
-// }
-// function filterProductByBrand(type) {
-//     let result = productsNeedShow.filter((item) => {
-//         return item.brand == type;
-//     });
-//     productsNeedShow = result;
-//     showProductList(productsNeedShow);
-// }
-// function filterProductByPrice(type) {
-//     let result;
-// if (type == 10000001) {
-//     result = productsNeedShow.filter((item) => {
-//         return item.price >= type;
-//     });
-// } else if (type == 3000000) {
-//     result = productsNeedShow.filter((item) => {
-//         return item.price <= type;
-//     });
-// } else {
-//     result = productsNeedShow.filter(item => 
-//     item.price <= type && item.price >= 3000000
-//     );
-// }
-//     productsNeedShow = result;
-//     showProductList(productsNeedShow);
-// }
-// function showIndextPage() {
-//     let idAdmin = JSON.parse(localStorage.getItem("idAdmin"));
-//     localStorage.setItem("idUser", idAdmin);
-//     window.location.href = "../index.html";
-// }
+
 function showUserList(users) {
     document.getElementsByClassName('users')[0].classList.remove('d-none');
     document.getElementsByClassName('products')[0].classList.add('d-none');
@@ -192,6 +156,7 @@ function addNewUser() {
             status: 1,
             role: role.value,
             cart: [],
+            history: [],
         }
         users.push(obj);
         localStorage.setItem("users", JSON.stringify(users));
@@ -389,16 +354,22 @@ function changeStatus(idUser) {
     showToast(successUpdateStatusUserMsg);
 }
 function deleteUser(idUser) {
+    let idLogInUser = JSON.parse(localStorage.getItem("idUser"));
     if (confirm('Bạn có chắc muốn xóa người dùng này?')) {
         for (let i = 0; i < usersNeedShow.length; i++) {
             if (usersNeedShow[i].id == idUser) {
-                usersNeedShow.splice(i, 1);
+                if (idLogInUser != idUser) {
+                    usersNeedShow.splice(i, 1);
+                    localStorage.setItem('users', JSON.stringify(usersNeedShow));
+                    showUserList(usersNeedShow);
+                    showToast(successDeleteUserMsg);
+                } else {
+                    showToast(errorDeleteUserMsg);
+                }
                 break;
             }
         }
-        localStorage.setItem('users', JSON.stringify(usersNeedShow));
-        showUserList(usersNeedShow);
-        showToast(successDeleteUserMsg);
+
     }
 }
 function editUser(idUser) {
